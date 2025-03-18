@@ -1,0 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayahiao <mayahiao@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/06 16:56:50 by mayahiao          #+#    #+#             */
+/*   Updated: 2025/03/06 16:56:54 by mayahiao         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str;
+	int	i;
+
+	i = 0;
+	str = (char *) malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!str)
+		return (0);
+	while (s1[i])
+	{
+		src[i] = s1[i];		
+		i++;
+	}
+	src[i] = '\0';
+	ft_strcat(str,s2);
+	return (str);
+}
+
+/*#include <stdio.h>
+
+int	main(void)
+{
+	const    char *s1 = "hello there";
+    const char *s2 = "   how are you ?";
+    char *result;
+    result = ft_strjoin(s1, s2);
+    
+    if (result)
+    {
+        printf("Result: %s\n", result);
+    }
+    else
+    {
+        printf("Error: ft_strjoin returned NULL\n");
+    }
+
+	free(result);	
+    return (0);
+}*/
