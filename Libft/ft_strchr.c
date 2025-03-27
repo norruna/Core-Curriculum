@@ -17,7 +17,7 @@ char	*ft_strchr(const char *s, int c)
 	}
 	return (0);
 }
-#include <stdio.h>
+/*#include <stdio.h>
 #include <string.h>
 
 int	main(void)
@@ -33,4 +33,4 @@ const char *str = "hello thzre";
 
 
     return 0;
-}
+}*/

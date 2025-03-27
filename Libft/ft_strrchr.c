@@ -4,25 +4,29 @@ char	*ft_strrchr(const char *s, int c)
 {
 	int	i;
 	char *str = (char *) s;
+	char *tmp = str;
 	i = 0;
 	if (!c)
 		return (str);
-	while (str[i] != '\0')
+	tmp = ft_strchr(&str[i],c);
+	while (tmp != 0)
 	{
-		if (str[i] == c)
+		tmp = ft_strchr(tmp,c) + 1;
+		if (ft_strchr(tmp,c))
 		{
-			return (&str[i]);
+			tmp = ft_strchr(tmp,c);
 		}
-		++i;
+		else
+			return (tmp - 1);
 	}
 	return (0);
 }
-#include <stdio.h>
+/*#include <stdio.h>
 #include <string.h>
 
 int	main(void)
 {
-const char *str = "hello thzre";
+const char *str = "hzllo thezefksldfssl;fsnewzhere";
 	char c = 'z';
 
 //        printf("Test case %d:\n", i + 1);
@@ -33,4 +37,4 @@ const char *str = "hello thzre";
 
 
     return 0;
-}
+}*/
