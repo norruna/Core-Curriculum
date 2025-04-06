@@ -5,7 +5,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <ctype.h>
-
+/* for testing purposes*/ #include <stdio.h>
 int ft_atoi(const char* str);
 void	ft_putchar_fd(char c,int fd);
 void	ft_putnbr_fd(int n, int fd);
@@ -40,4 +40,5 @@ void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 int	ft_memcmp(const void *s1, const void *s2, size_t n);
 void	ft_putendl_fd(char *s, int fd);
+char	*ft_itoa(int n);
 #endif
