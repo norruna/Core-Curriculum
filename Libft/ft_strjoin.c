@@ -23,10 +23,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (0);
 	while (s1[i])
 	{
-		src[i] = s1[i];		
+		str[i] = s1[i];		
 		i++;
 	}
-	src[i] = '\0';
+	str[i] = '\0';
 	ft_strcat(str,s2);
 	return (str);
 }
