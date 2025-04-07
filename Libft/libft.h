@@ -41,4 +41,5 @@ void	*ft_calloc(size_t nmemb, size_t size);
 int	ft_memcmp(const void *s1, const void *s2, size_t n);
 void	ft_putendl_fd(char *s, int fd);
 char	*ft_itoa(int n);
+char	*ft_strtrim(char const *s1, char const *set);
 #endif
