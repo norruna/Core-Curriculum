@@ -3,17 +3,18 @@
 char	*ft_strrchr(const char *s, int c)
 {
 	char	*str;
-	size_t	i;
+	unsigned char testc;
 
-	i = ft_strlen(s) - 1;
-	str = (char *)s;
-	while (str[i] != c && i > 0)
-	{
-		i--;
-	}
-	if (i <= 0 && str[i] != c)
+	if (!s)
 		return (NULL);
-	return (&str[i]);
+	testc = (unsigned char) c;
+	str = (char *)s + ft_strlen(s);
+	
+	while (*str != testc && *str != *s)
+		str--;
+	if (*str == testc)
+		return (str);
+	return (NULL);
 }
 /*#include <stdio.h>
 #include <string.h>
