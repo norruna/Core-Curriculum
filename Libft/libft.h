@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <ctype.h>
 #include <stddef.h>
+#include <stdint.h>
 /* for testing purposes*/ #include <stdio.h>
 typedef struct s_list
 {
