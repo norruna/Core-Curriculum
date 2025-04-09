@@ -38,7 +38,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	result[j] = '\0';
 	return (result);
 }	
-
+/*
 int	main(void)
 {
 	char const *s1 = "Why hello there";
@@ -46,4 +46,4 @@ int	main(void)
 	char *res = ft_strtrim(s1,s2);
 	printf("the final string is : %s\n", res);
 	return (0);
-}
+}*/

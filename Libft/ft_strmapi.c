@@ -25,7 +25,7 @@ char upper(unsigned int i, char c)
 	return (c);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	char *res;
 
@@ -34,4 +34,4 @@ int	main(void)
 	free(res);
 	return (0);
 }
-
+*/

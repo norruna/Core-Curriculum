@@ -3,19 +3,20 @@
 char	*ft_strchr(const char *s, int c)
 {
 	int	i;
-	char *str = (char *) s;
+	unsigned char *str = (unsigned char *)s;
+	unsigned char testc;
+
+	testc = (unsigned char) c;
 	i = 0;
-	if (!c)
-		return (str);
-	while (str[i] != '\0')
-	{
-		if (str[i] == c)
-		{
-			return (&str[i]);
-		}
-		++i;
+	if (!s)
+		return (NULL);
+	while (str[i] != testc)
+	{	
+		if (str[i] == '\0')
+			return (NULL);
+		i++;
 	}
-	return (0);
+	return ((char *)&str[i]);
 }
 /*#include <stdio.h>
 #include <string.h>

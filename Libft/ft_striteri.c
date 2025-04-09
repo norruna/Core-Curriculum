@@ -5,9 +5,13 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	unsigned int	i;
 
 	i = 0;
-	f(i, s);
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }
-
+/*
 void upper(unsigned int i, char *c)
 {
 	while (c[i])
@@ -24,5 +28,5 @@ int	main(void)
 	ft_striteri(s,upper);
 	printf("the resulting string is : %s\n",s);
 	return (0);
-}
+}*/
 

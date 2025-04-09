@@ -2,32 +2,26 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
-	char *str = (char *) s;
-	char *tmp = str;
-	i = 0;
-	if (!c)
-		return (str);
-	tmp = ft_strchr(&str[i],c);
-	while (tmp != 0)
+	char	*str;
+	size_t	i;
+
+	i = ft_strlen(s) - 1;
+	str = (char *)s;
+	while (str[i] != c && i > 0)
 	{
-		tmp = ft_strchr(tmp,c) + 1;
-		if (ft_strchr(tmp,c))
-		{
-			tmp = ft_strchr(tmp,c);
-		}
-		else
-			return (tmp - 1);
+		i--;
 	}
-	return (0);
+	if (i <= 0 && str[i] != c)
+		return (NULL);
+	return (&str[i]);
 }
 /*#include <stdio.h>
 #include <string.h>
 
 int	main(void)
 {
-const char *str = "hzllo thezefksldfssl;fsnewzhere";
-	char c = 'z';
+const char *str = "tripouille";
+	char c = 't';
 
 //        printf("Test case %d:\n", i + 1);
         printf("str: \"%s\", to_find: \"%c\"\n", str, c);

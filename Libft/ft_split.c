@@ -19,7 +19,7 @@ static int	word_length(const char *str, char c)
 	len = 0;
 	if (!c)
 		return (0);
-	while (str[len] && str[len] != c)
+	while (str[len] && (str[len] != c))
 	{
 		len++;
 	}
@@ -100,7 +100,7 @@ char	**ft_split(const char *str, char c)
 	result[j] = 0;
 	return (result);
 }
-void	ft_free(char **result)
+/*void	ft_free(char **result)
 {
 	int	i = 0;
 	while (result[i] != NULL)
@@ -111,7 +111,7 @@ void	ft_free(char **result)
 	free(result);
 }
 
-/*#include <stdio.h>
+#include <stdio.h>
 int	main(void)
 {
 	const char *str = "   a     a    aaaaaaa    aa aa     aaa  ";

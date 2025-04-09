@@ -1,32 +1,35 @@
 #include "libft.h"
 
-static size_t malloc_size(char const *s1, unsigned int start, size_t len)
+static size_t	malloc_size(char const *s1, unsigned int start, size_t len)
 {
-	size_t size = 0;
+	size_t	size = 0;
 
 	while (s1[start] && size < len)
 	{
 		size++;
 		start++;
 	}
-	return (size);	
+	return (size);
 }
+
 char	*ft_substr(char const *s1, unsigned int start, size_t len)
 {
 	char	*result;
 	size_t	i;
-	size_t size;
+	size_t	size;
 
-	if (start > ft_strlen(s1))
+	if (!s1)
 		return (NULL);
-	size = malloc_size(s1,start,len);
-	result = (char *) malloc((size + 1 ) * sizeof(char));
+	if (start > ft_strlen(s1))
+		return (ft_strdup("")); // safer to return empty string than NULL
+	size = malloc_size(s1, start, len);
+	result = (char *)malloc((size + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	i = 0;
-	while (i < len)
+	while (i < size) // ✅ use size, not len
 	{
-		result[i] =s1[start];
+		result[i] = s1[start];
 		i++;
 		start++;
 	}
@@ -34,12 +37,3 @@ char	*ft_substr(char const *s1, unsigned int start, size_t len)
 	return (result);
 }
 
-int	main(void)
-{
-	char const *s1 = "no no no start from here stop no no";
-	unsigned int start = 90;
-	size_t len = 17;
-	char *res = ft_substr(s1,start,len);
-	printf("the resulting substring is : %s\n",res);
-	free(res);
-}

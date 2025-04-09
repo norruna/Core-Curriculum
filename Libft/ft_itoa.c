@@ -70,7 +70,7 @@ char	*ft_itoa(int n)
 }
 
 
-int	main(void)
+/*int	main(void)
 {
 	int	n  = 564450;
 	char	*result = ft_itoa(n);
@@ -80,4 +80,4 @@ int	main(void)
 //	printf("main size is : %d\n",size);
 	free(result);
 	return (0);
-}
+}*/
