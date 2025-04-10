@@ -6,13 +6,13 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:52:09 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/04/11 00:33:27 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:36:28 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
-char *ft_strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
 	char	*dest;
 	int		i;

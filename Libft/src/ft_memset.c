@@ -6,25 +6,24 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:32:57 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/04/11 00:32:58 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:36:28 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {
 	unsigned char	*s_char;
-	size_t	i;
+	size_t			i;
 
 	i = 0;
-	s_char	= s;
+	s_char = s;
 	while (i < n)
 	{
 		s_char[i] = c;
 		i++;
 	}
-
 	return (s);
 }
 

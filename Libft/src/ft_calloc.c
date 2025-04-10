@@ -6,11 +6,11 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:32:03 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/04/11 00:32:05 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:36:28 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
@@ -24,5 +24,5 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (!result)
 		return (NULL);
 	ft_bzero((void *)result, nmemb * size);
-	return ((void *)result);	
+	return ((void *)result);
 }

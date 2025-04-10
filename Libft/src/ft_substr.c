@@ -6,16 +6,17 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:34:03 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/04/11 00:34:04 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:36:28 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 static size_t	malloc_size(char const *s1, unsigned int start, size_t len)
 {
-	size_t	size = 0;
+	size_t	size;
 
+	size = 0;
 	while (s1[start] && size < len)
 	{
 		size++;
@@ -33,13 +34,13 @@ char	*ft_substr(char const *s1, unsigned int start, size_t len)
 	if (!s1)
 		return (NULL);
 	if (start > ft_strlen(s1))
-		return (ft_strdup("")); // safer to return empty string than NULL
+		return (ft_strdup(""));
 	size = malloc_size(s1, start, len);
 	result = (char *)malloc((size + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	i = 0;
-	while (i < size) // ✅ use size, not len
+	while (i < size)
 	{
 		result[i] = s1[start];
 		i++;
@@ -48,4 +49,3 @@ char	*ft_substr(char const *s1, unsigned int start, size_t len)
 	result[i] = '\0';
 	return (result);
 }
-

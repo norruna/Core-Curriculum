@@ -6,14 +6,14 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:07:38 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/04/11 00:31:52 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:36:28 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 int	ft_atoi(const char *str)
-{	
+{
 	int	i;
 	int	sign;
 	int	nb;
@@ -31,7 +31,7 @@ int	ft_atoi(const char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		nb = (nb * 10) + (str[i] - '0'); 
+		nb = (nb * 10) + (str[i] - '0');
 		i++;
 	}
 	return (sign * nb);

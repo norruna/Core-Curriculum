@@ -6,11 +6,11 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:32:32 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/04/11 00:32:35 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:36:28 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 static int	size_malloc(int n)
 {
@@ -21,7 +21,7 @@ static int	size_malloc(int n)
 	size = 0;
 	if (n < 0)
 	{
-		size++; // for the minus sign
+		size++;
 		n = -n;
 	}
 	while (n != 0)
@@ -32,7 +32,6 @@ static int	size_malloc(int n)
 	return (size);
 }
 
-
 char	*ft_itoa(int n)
 {
 	int		size;
@@ -41,13 +40,11 @@ char	*ft_itoa(int n)
 
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-
 	sign = (n < 0);
 	size = size_malloc(n);
 	result = (char *)malloc((size + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
-
 	result[size] = '\0';
 	if (n == 0)
 		result[0] = '0';
@@ -63,9 +60,6 @@ char	*ft_itoa(int n)
 	}
 	return (result);
 }
-
-
-
 /*int	main(void)
 {
 	int	n  = 564450;

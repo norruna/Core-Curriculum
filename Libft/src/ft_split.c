@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayahiao <mayahiao@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:16:42 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/03/11 12:16:43 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:36:28 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 static int	word_length(const char *str, char c)
 {
@@ -73,6 +73,26 @@ static char	*make_word(const char *str, char c)
 	return (word);
 }
 
+static char	**zero_case(const char *str)
+{
+	char	**result;
+
+	if (!str || str[0] == '\0')
+	{
+		result = (char **)malloc(sizeof(char *));
+		if (!result)
+			return (NULL);
+		result[0] = NULL;
+		return (result);
+	}
+	result = (char **)malloc(2 * sizeof(char *));
+	if (!result)
+		return (NULL);
+	result[0] = ft_strdup(str);
+	result[1] = 0;
+	return (result);
+}
+
 char	**ft_split(const char *str, char c)
 {
 	char	**result;
@@ -80,22 +100,7 @@ char	**ft_split(const char *str, char c)
 	int		j;
 
 	if (c == 0)
-	{
-		if (!str || str[0] == '\0')
-		{
-			result = (char **)malloc(sizeof(char *));
-			if (!result)
-				return (NULL);
-			result[0] = NULL;
-			return (result);
-		}
-		result = (char **)malloc(2 * sizeof(char *));
-		if (!result)
-			return (NULL);
-		result[0] = ft_strdup(str);
-		result[1] = 0;
-		return (result);
-	}	
+		return (zero_case(str));
 	result = (char **)malloc((count_words(str, c) + 1) * sizeof(char *));
 	if (!result)
 		return (NULL);
@@ -108,9 +113,7 @@ char	**ft_split(const char *str, char c)
 		if (str[i])
 		{
 			result[j] = make_word(&str[i], c);
-			if (!result[j])
-				return (NULL);
-			i = i + word_length(&str[i], c);
+			i += word_length(&str[i], c);
 			j++;
 		}
 	}

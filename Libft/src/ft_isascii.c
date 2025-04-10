@@ -6,11 +6,12 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:32:14 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/04/11 00:32:16 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:36:28 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
+
 int	ft_isascii(int c)
 {
 	if (c >= 0 && c <= 127)

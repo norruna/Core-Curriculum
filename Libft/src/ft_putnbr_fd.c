@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayahiao <mayahiao@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 20:01:34 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/02/20 20:16:18 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:36:28 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {
@@ -19,14 +19,14 @@ void	ft_putnbr_fd(int n, int fd)
 	c = 0;
 	if (n == -2147483648)
 	{
-		ft_putstr_fd("-2147483648",fd);
+		ft_putstr_fd("-2147483648", fd);
 		return ;
 	}
 	if (n < 0)
 	{
 		ft_putchar_fd('-', fd);
 		n = -n;
-		ft_putnbr_fd(n,fd);
+		ft_putnbr_fd(n, fd);
 		return ;
 	}
 	if (n > 9)
@@ -37,7 +37,7 @@ void	ft_putnbr_fd(int n, int fd)
 	else
 	{
 		c = n + '0';
-		ft_putchar_fd(c,fd);
+		ft_putchar_fd(c, fd);
 	}
 }
 

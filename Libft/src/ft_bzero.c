@@ -6,15 +6,15 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:31:58 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/04/11 00:32:00 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:36:28 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
-void ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	char *s1;
+	char	*s1;
 	size_t	i;
 
 	i = 0;
@@ -25,4 +25,3 @@ void ft_bzero(void *s, size_t n)
 		i++;
 	}
 }
-

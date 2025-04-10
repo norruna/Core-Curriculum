@@ -6,22 +6,21 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:33:54 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/04/11 00:33:55 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:36:28 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char	*str;
-	unsigned char testc;
+	char			*str;
+	unsigned char	testc;
 
 	if (!s)
 		return (NULL);
 	testc = (unsigned char) c;
 	str = (char *)s + ft_strlen(s);
-	
 	while (*str != testc && *str != *s)
 		str--;
 	if (*str == testc)

@@ -6,11 +6,12 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:56:50 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/04/11 00:33:34 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:36:28 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
+
 static char	*ft_strcat(char *dest, const char *src)
 {
 	int	i;
@@ -31,7 +32,7 @@ static char	*ft_strcat(char *dest, const char *src)
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
-	int	i;
+	int		i;
 
 	i = 0;
 	str = (char *) malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
@@ -39,11 +40,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (0);
 	while (s1[i])
 	{
-		str[i] = s1[i];		
+		str[i] = s1[i];
 		i++;
 	}
 	str[i] = '\0';
-	ft_strcat(str,s2);
+	ft_strcat(str, s2);
 	return (str);
 }
 

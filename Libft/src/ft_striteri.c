@@ -6,11 +6,11 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 00:33:29 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/04/11 00:33:30 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:36:28 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
@@ -41,4 +41,3 @@ int	main(void)
 	printf("the resulting string is : %s\n",s);
 	return (0);
 }*/
-
