@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayahiao <mayahiao@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:56:50 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/03/06 16:56:54 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:33:34 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
