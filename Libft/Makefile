@@ -1,45 +1,54 @@
-SRC			= ft_memset ft_bzero ft_memcpy ft_memmove ft_memchr ft_memcmp ft_strlen ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint ft_toupper ft_tolower ft_strchr ft_strrchr ft_strncmp ft_strlcpy ft_strlcat ft_strnstr ft_atoi ft_calloc ft_strdup ft_substr ft_strjoin ft_strtrim ft_split ft_itoa ft_strmapi ft_striteri ft_putchar_fd ft_putstr_fd ft_putendl_fd ft_putnbr_fd
+# Compiler and flags
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+AR = ar rcs
+RM = rm -f
 
-B_SRC		= ft_lstnew ft_lstadd_front ft_lstsize ft_lstlast ft_lstadd_back ft_lstdelone ft_lstclear ft_lstiter ft_lstmap
+# Paths
+SRC = src/
+BNS = bonus/
+INC = includes/
 
-SRCS		= $(addsuffix .c, ${SRC})
+# Files (no extensions here)
+SRC_FILES = ft_memset ft_bzero ft_memcpy ft_memmove ft_memchr ft_memcmp ft_strlen ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint ft_toupper ft_tolower ft_strchr ft_strrchr ft_strncmp ft_strlcpy ft_strlcat ft_strnstr ft_atoi ft_calloc ft_strdup ft_substr ft_strjoin ft_strtrim ft_split ft_itoa ft_strmapi ft_striteri ft_putchar_fd ft_putstr_fd ft_putendl_fd ft_putnbr_fd
+BONUS_FILES = ft_lstnew ft_lstadd_front ft_lstsize ft_lstlast ft_lstadd_back ft_lstdelone ft_lstclear ft_lstiter ft_lstmap
 
-B_SRCS		= $(addsuffix .c, ${B_SRC})
+# Prefixed file paths with .c extension
+SRCS = $(addsuffix .c, $(addprefix $(SRC), $(SRC_FILES)))
+BONUS_SRCS = $(addsuffix .c, $(addprefix $(BNS), $(BONUS_FILES)))
 
-HEAD		= ./includes/ 
+# Object files
+OBJS = $(SRCS:.c=.o)
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
-OBJS		= ${SRCS:.c=.o}
+# Output
+NAME = libft.a
 
-B_OBJS		= ${B_SRCS:.c=.o}
+# Default target
+all: $(NAME)
 
-NAME		= libft.a
+# Make libft.a from normal .o files
+$(NAME): $(OBJS)
+	$(AR) $(NAME) $(OBJS)
 
-CC			= gcc
-RM			= rm -f
-AR			= ar rc
-RN			= ranlib
+# Compile rule: .c -> .o
+%.o: %.c
+	$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
-CFLAGS		= -Wall -Wextra -Werror
+# Add bonus
+bonus: $(NAME) $(BONUS_OBJS)
+	$(AR) $(NAME) $(BONUS_OBJS)
 
-.c.o:
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
-
-$(NAME):	${OBJS}
-			${AR} ${NAME} ${OBJS}
-			${RN} ${NAME}
-
-bonus:		${B_OBJS}
-			${AR} ${NAME} ${B_OBJS}
-			${RN} ${NAME}
-
-all:		$(NAME)
-
+# Clean object files
 clean:
-			${RM} ${OBJS} ${B_OBJS}
+	$(RM) $(OBJS) $(BONUS_OBJS)
 
-fclean:		clean
-			${RM} $(NAME)
+# Clean everything
+fclean: clean
+	$(RM) $(NAME)
 
-re:			fclean all
+# Rebuild everything
+re: fclean all
 
-.PHONY:		all bonus clean fclean re
+.PHONY: all clean fclean re bonus
+

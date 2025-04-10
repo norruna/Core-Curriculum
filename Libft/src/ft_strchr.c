@@ -1,0 +1,37 @@
+#include "libft.h"
+
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+	unsigned char *str = (unsigned char *)s;
+	unsigned char testc;
+
+	testc = (unsigned char) c;
+	i = 0;
+	if (!s)
+		return (NULL);
+	while (str[i] != testc)
+	{	
+		if (str[i] == '\0')
+			return (NULL);
+		i++;
+	}
+	return ((char *)&str[i]);
+}
+/*#include <stdio.h>
+#include <string.h>
+
+int	main(void)
+{
+const char *str = "hello thzre";
+	char c = 'z';
+
+//        printf("Test case %d:\n", i + 1);
+        printf("str: \"%s\", to_find: \"%c\"\n", str, c);
+        printf("ft_strchr : %s\n", ft_strchr(str, c));
+        printf("strchr : %s\n", strchr(str, c));
+        printf("\n");
+
+
+    return 0;
+}*/
