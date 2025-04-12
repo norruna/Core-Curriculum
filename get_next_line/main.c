@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42-berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 01:04:30 by nelly             #+#    #+#             */
-/*   Updated: 2025/04/12 02:47:49 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/04/12 03:17:12 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ int main(void)
     char    buffer[BUFFER_SIZE + 1];
     fd = open("file.txt", O_RDONLY);
     if (fd == -1)
-        return (0);
-    else
-        printf("file opened yiiy\n");
+		return (0);
+	else
+		printf("file opened yiiy\n");
 	bytes = read (fd, buffer, count);
 	printf("bytes read : %ld\n",bytes);
 	if (bytes == -1 || bytes == 0)
