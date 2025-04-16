@@ -12,28 +12,33 @@
 
 #include "get_next_line.h"
 
-char	*fill_buffer(char *line)
+char	*read_line(int fd)
 {
-	char	*buffer;
-	size_t	i;
-	ssize_t bytes;
-
-	bytes = read(fd, 
-	while (i < BUFFER_SIZE )
+	char *buffer = (char *) malloc(sizeof(char) * (BUFFER_SIZE));
+	if (!buffer)
+		return (0);	
+	bytes = read (fd, buffer, BUFFER_SIZE);
+	if (bytes == -1 || bytes == 0)
+    		return (0);
+	line = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!line)
 	{
-		buffer[i] = line[i];
-		i++;
+		free(buffer);
+		return (0);
 	}
+	printf("%s",buffer);
+	free(buffer);
+	printf("\n");
+	return (line);
 }
 
-char	*fill_line()
+char	*update_line()
 {
-&& line[i] != '\0' && line[i] != '\n'
-
 }
 
 char	*get_next_line(int fd)
 {
-	
+
+	return(0);
 }
 

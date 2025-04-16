@@ -10,13 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <string.h>
-
-#define BUFFER_SIZE 1024
+#include "get_next_line.h"
 
 int	ft_strlen(const char *str)
 {
@@ -64,37 +58,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 int main(void)
 {
-    int     fd;
-    size_t  count = 25;
-    ssize_t bytes;
-    char    buffer[BUFFER_SIZE + 1];
-    fd = open("file.txt", O_RDONLY);
+   fd = open("file.txt", O_RDONLY);
     if (fd == -1)
 		return (0);
 	else
 		printf("file opened yiiy\n");
-	bytes = read (fd, buffer, count);
-	printf("bytes read : %ld\n",bytes);
-	if (bytes == -1 || bytes == 0)
-    	return (0);
-	while (bytes > 0)
-	{
-		bytes = read (fd, buffer, count);
-		char *line_read = (char *) malloc(sizeof(char) * (bytes + 1));
-		if (!line_read)
-			return (0);
-    	int	j = 0;
-		while (j < bytes)
-		{
-			line_read[j] = buffer[j];
-			printf("%c",line_read[j]);
-			j++;
-		}
-		line_read[j] = '\0';
-		//static char *line = NULL;
-		//line = ft_strjoin(line, buffer);
-    	printf("\n");
-    	free(line_read);
-	}
-	return(0);
+	printf("line is : %s\n",get_next_line(fd));
+	return (0);
 }

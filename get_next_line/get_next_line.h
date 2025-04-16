@@ -20,6 +20,11 @@
 #include <unistd.h>
 #include <stdio.h> //for printf testing
 
-char	*get_next_line(int fd);
 
+char	*get_next_line(int fd);
+char	*ft_strjoin(char const *s1, char const *s2);
+static char	*ft_strcat(char *dest, const char *src);
+int	ft_strlen(const char *str);
+char	*read_line(int fd);
+char	*update_line();
 #endif
