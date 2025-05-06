@@ -46,7 +46,6 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-# Rebuild everything
 re: fclean all
 
 .PHONY: all clean fclean re bonus
