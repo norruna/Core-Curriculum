@@ -6,34 +6,41 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:45:26 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/05/07 12:45:31 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/05/07 13:32:56 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*read_line(int fd)
+char	*read_buffer(int fd)
 {
-	char *buffer = (char *) malloc(sizeof(char) * (BUFFER_SIZE));
+	char	*buffer;
+	int		bytes;
+
+	buffer = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
-		return (0);	
+		return (0);
 	bytes = read (fd, buffer, BUFFER_SIZE);
-	if (bytes == -1 || bytes == 0)
-    		return (0);
+	while (bytes > 0)
+	{
+		if (ft_strchr(buffer, '\n'))
+			extract_line(buffer);
+
+	}
+	return (0);
+}
+
+char	*extract_line(char *buffer)
+{
+	char	*line;
+
 	line = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!line)
 	{
 		free(buffer);
 		return (0);
 	}
-	printf("%s",buffer);
-	free(buffer);
-	printf("\n");
-	return (line);
-}
-
-char	*update_line()
-{
+	return (line)
 }
 
 char	*get_next_line(int fd)
