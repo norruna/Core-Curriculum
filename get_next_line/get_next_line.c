@@ -6,11 +6,20 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:45:26 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/05/07 13:32:56 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/05/07 16:00:59 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int	ft_strlen(const char *str)
+{
+	int	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+
+}
 
 char	*read_buffer(int fd)
 {
@@ -25,7 +34,7 @@ char	*read_buffer(int fd)
 	{
 		if (ft_strchr(buffer, '\n'))
 			extract_line(buffer);
-
+		bytes = read (fd, buffer, BUFFER_SIZE);
 	}
 	return (0);
 }
@@ -40,12 +49,13 @@ char	*extract_line(char *buffer)
 		free(buffer);
 		return (0);
 	}
-	return (line)
+	ft_strjoin(line, buffer);
+	return (line);
 }
 
-char	*get_next_line(int fd)
+/* char	*get_next_line(int fd)
 {
 
 	return(0);
 }
-
+ */
