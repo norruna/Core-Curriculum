@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayahiao <mayahiao@student.42-berlin.de    +#+  +:+       +#+        */
+/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/12 01:04:30 by nelly             #+#    #+#             */
-/*   Updated: 2025/04/12 03:17:12 by mayahiao         ###   ########.fr       */
+/*   Created: 2025/05/07 12:45:05 by mayahiao          #+#    #+#             */
+/*   Updated: 2025/05/07 12:45:07 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 int main(void)
 {
-   fd = open("file.txt", O_RDONLY);
+  int  fd = open("file.txt", O_RDONLY);
     if (fd == -1)
 		return (0);
 	else
