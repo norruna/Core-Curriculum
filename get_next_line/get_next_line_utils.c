@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:45:37 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/05/07 16:07:50 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/05/07 16:15:31 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ft_strchr(char *s, int c)
 	return (1);
 }
 
-static size_t	malloc_size(char const *s1, unsigned int start, size_t len)
+size_t	malloc_size(char const *s1, unsigned int start, size_t len)
 {
 	size_t	size;
 

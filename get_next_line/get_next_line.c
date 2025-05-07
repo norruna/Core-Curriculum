@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:45:26 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/05/07 16:11:47 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/05/07 17:15:11 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	*read_buffer(int fd)
 	char	*buffer;
 	int		bytes;
 	char	*line;
+	char	*extracted_line;
 
 	buffer = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
@@ -42,8 +43,11 @@ char	*read_buffer(int fd)
 	while (bytes > 0)
 	{
 		ft_strjoin(line, buffer);
-		if (ft_strchr(buffer, '\n'))
-			extract_line(buffer, line);
+		if (ft_strchr(line, '\n'))
+		{
+			extracted_line = extract_line(buffer, line);
+			return (extracted_line);
+		}
 		bytes = read (fd, buffer, BUFFER_SIZE);
 	}
 	return (0);
@@ -55,7 +59,7 @@ char	*extract_line(char *buffer, char *line)
 	int		i;
 
 	extracted_line = (char *) malloc (sizeof(char) * BUFFER_SIZE + 1);
-	if (!extract_line)
+	if (!extracted_line)
 	{
 		free (buffer);
 		free (line);
@@ -71,9 +75,40 @@ char	*extract_line(char *buffer, char *line)
 	return (extracted_line);
 }
 
-/* char	*get_next_line(int fd)
+char	*ft_strdup(const char *s)
 {
+	char	*dest;
+	int		i;
 
-	return(0);
+	i = 0;
+	dest = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!dest)
+		return (NULL);
+	while (s[i])
+	{
+		dest[i] = s[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
- */
+
+char	*get_next_line(int fd)
+{
+	static char	*extracted_line;
+	fd = open("file.txt", O_RDONLY);
+    if (fd == -1 )
+		return (0);
+	else
+		printf("file opened yiiy\n");
+	extracted_line = read_buffer(fd);
+	return (0);
+}
+
+int	main(void)
+{
+	int fd = 0;
+	get_next_line(fd);
+	printf("the line is : %s\n",read_buffer(fd));
+	return (0);
+}

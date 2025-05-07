@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:45:17 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/05/07 15:05:44 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/05/07 17:11:28 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char    *ft_strcat(char *dest, const char *src);
 int     ft_strlen(const char *str);
 char	*read_buffer(int fd);
-char	*extract_line(char *buffer);
-char    *ft_strchr(const char *s, int c);
+char	*extract_line(char *buffer, char *line);
+int     ft_strchr(char *s, int c);
+char	*ft_substr(char const *s1, unsigned int start, size_t len);
+char	*ft_strdup(const char *s);
 #endif
