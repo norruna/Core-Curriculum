@@ -23,12 +23,11 @@ int	ft_strlen(const char *str)
 
 }
 
-char	*read_buffer(int fd)
+char	*read_buffer(int fd, char *extracted_line)
 {
 	char	*buffer;
 	int		bytes;
 	char	*line;
-	char	*extracted_line;
 
 	buffer = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
@@ -45,7 +44,7 @@ char	*read_buffer(int fd)
 		ft_strjoin(line, buffer);
 		if (ft_strchr(line, '\n'))
 		{
-			extracted_line = extract_line(buffer, line);
+			extracted_line = extract_line(line, extracted_line);
 			return (extracted_line);
 		}
 		bytes = read (fd, buffer, BUFFER_SIZE);
@@ -53,18 +52,10 @@ char	*read_buffer(int fd)
 	return (0);
 }
 
-char	*extract_line(char *buffer, char *line)
+char	*extract_line(char *line, char *extracted_line)
 {
-	char	*extracted_line;
 	int		i;
 
-	extracted_line = (char *) malloc (sizeof(char) * BUFFER_SIZE + 1);
-	if (!extracted_line)
-	{
-		free (buffer);
-		free (line);
-		return (NULL);
-	}
 	i = 0;
 	while (line[i] != '\n')
 	{
@@ -97,18 +88,22 @@ char	*get_next_line(int fd)
 {
 	static char	*extracted_line;
 	fd = open("file.txt", O_RDONLY);
-    if (fd == -1 )
+	if (fd == -1 )
 		return (0);
 	else
 		printf("file opened yiiy\n");
-	extracted_line = read_buffer(fd);
+	extracted_line = (char *) malloc (sizeof(char) * BUFFER_SIZE + 1);
+	if (!extracted_line)
+		return (NULL);
+	extracted_line = read_buffer(fd, extracted_line);
 	return (0);
 }
 
 int	main(void)
 {
-	int fd = 0;
-	get_next_line(fd);
-	printf("the line is : %s\n",read_buffer(fd));
+	char	*str;
+	int fd = 1;
+	str = get_next_line(fd);
+	printf("the line is : %s\n",str);
 	return (0);
 }

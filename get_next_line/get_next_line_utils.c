@@ -83,7 +83,7 @@ size_t	malloc_size(char const *s1, unsigned int start, size_t len)
 	return (size);
 }
 
-char	*ft_substr(char const *s1, unsigned int start, size_t len)
+char	*ft_substr(char const *s1, int start, size_t len)
 {
 	char	*result;
 	size_t	i;
