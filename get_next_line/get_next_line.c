@@ -51,13 +51,16 @@ char	*read_buffer(int fd, char *buffer, char *line, char *extracted_line)
 			line = ft_strdup(buffer);
 		else
 			line = ft_strjoin(line, buffer);
-		if (ft_strchr(line, '\n') || ft_strchr(line, '\0'))
+		printf("the buffer is : %s\n\n",buffer);
+		if (ft_strchr(line, '\n') || ft_strchr(line, '\0')) //'\0' here is a mistake. gives more errors but it works 
 		{
 			extracted_line = extract_line(line, extracted_line);
 			free(line); //dont change  this one
+			free(buffer);
 			return (extracted_line);
 		}
 		bytes = read (fd, buffer, BUFFER_SIZE);
+		free(buffer);
 	}
 	free(line);
 	return (0);
@@ -67,7 +70,7 @@ char	*extract_line(char *line, char *extracted_line)
 {
 	int		i;
 	i = 0;
-	while (line[i] != '\n' && line[i] != '\0') //added '\0' but didnt make difference with valgrind
+	while (line[i] != '\n' && line[i] != '\0') //'\0' condition only works on big buffers. commenting this gives 5 extra errors
 	{
 		extracted_line[i] = line[i];
 		i++;
@@ -81,13 +84,17 @@ char	*get_next_line(int fd)
 	char	*buffer;
 	static char	*extracted_line;
 	char	*line;
-	
-	fd = open("file.txt", O_RDONLY);
-	if (fd < 0 || read (fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
-		return (0);
 	buffer = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (0);
+	fd = open("file.txt", O_RDONLY);
+	if (fd < 0 || read (fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
+	{
+		extracted_line = NULL;
+		free(buffer);
+		return (0);
+	}
+	
 	line = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!line)
 	{
@@ -95,13 +102,13 @@ char	*get_next_line(int fd)
 		return (0);
 	}	
 	extracted_line = (char *) malloc (sizeof(char) * BUFFER_SIZE + 1);
+	
 	if (!extracted_line)
 	{
 		free(buffer);
-		return (NULL);
+		return (0);
 	}
 	extracted_line = read_buffer(fd, buffer, line ,extracted_line);
-	free(buffer);
 	free(line);
 	return (extracted_line);
 }
