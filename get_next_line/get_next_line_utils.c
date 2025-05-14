@@ -48,8 +48,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-/*modified strchr to return true (1) or false (0)*/
-int	ft_strchr(char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
 	int				i;
 	unsigned char	*str;
@@ -59,14 +58,14 @@ int	ft_strchr(char *s, int c)
 	testc = (unsigned char) c;
 	i = 0;
 	if (!s)
-		return (0);
+		return (NULL);
 	while (str[i] != testc)
 	{
 		if (str[i] == '\0')
-			return (0);
+			return (NULL);
 		i++;
 	}
-	return (1);
+	return ((char *)&str[i]);
 }
 
 size_t	malloc_size(char const *s1, unsigned int start, size_t len)

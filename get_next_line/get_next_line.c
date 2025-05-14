@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 12:45:26 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/05/07 17:15:11 by mayahiao         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
 int	ft_strlen(const char *str)
@@ -40,39 +28,56 @@ char	*ft_strdup(const char *s)
 	return (dest);
 }
 
-char	*read_buffer(int fd, char *buffer, char *line, char *extracted_line)
+char	*read_buffer(int fd, char *line)
 {
 	int		bytes;
+	char	*buffer;
+	char	*temp;
 
-	bytes = read (fd, buffer, BUFFER_SIZE);
-	while (bytes > 0)
+	buffer = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
+		return (NULL);
+	while ((bytes = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
+		buffer[bytes] = '\0';
 		if (ft_strlen(line) == 0)
-			line = ft_strdup(buffer);
+			temp = ft_strdup(buffer);
 		else
-			line = ft_strjoin(line, buffer);
-		printf("the buffer is : %s\n\n",buffer);
-		if (ft_strchr(line, '\n') || ft_strchr(line, '\0')) //'\0' here is a mistake. gives more errors but it works 
-		{
-			extracted_line = extract_line(line, extracted_line);
-			free(line); //dont change  this one
-			free(buffer);
-			return (extracted_line);
-		}
-		bytes = read (fd, buffer, BUFFER_SIZE);
-		free(buffer);
+			temp = ft_strjoin(line, buffer);
+		free(line);
+		line = temp;
+		if (ft_strchr(line, '\n'))
+			break;
 	}
-	free(line);
-	return (0);
+	free(buffer);
+	if (bytes < 0 || (bytes == 0 && ft_strlen(line) == 0))
+	{
+		free(line);
+		return (NULL);
+	}
+	return (line);
 }
 
-char	*extract_line(char *line, char *extracted_line)
+char	*extract_line(char *line)
 {
 	int		i;
+	char	*extracted_line;
+
 	i = 0;
-	while (line[i] != '\n' && line[i] != '\0') //'\0' condition only works on big buffers. commenting this gives 5 extra errors
+	while (line[i] && line[i] != '\n')
+		i++;
+	extracted_line = (char *)malloc(sizeof(char) * (i + (line[i] == '\n') + 1));
+	if (!extracted_line)
+		return (NULL);
+	i = 0;
+	while (line[i] && line[i] != '\n')
 	{
 		extracted_line[i] = line[i];
+		i++;
+	}
+	if (line[i] == '\n')
+	{
+		extracted_line[i] = '\n';
 		i++;
 	}
 	extracted_line[i] = '\0';
@@ -81,45 +86,66 @@ char	*extract_line(char *line, char *extracted_line)
 
 char	*get_next_line(int fd)
 {
-	char	*buffer;
-	static char	*extracted_line;
-	char	*line;
-	buffer = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
-		return (0);
-	fd = open("file.txt", O_RDONLY);
-	if (fd < 0 || read (fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
-	{
-		extracted_line = NULL;
-		free(buffer);
-		return (0);
-	}
-	
-	line = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	static char	*stash;
+	char		*line;
+	char		*temp;
+
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+		return (NULL);
+	if (!stash)
+		stash = ft_strdup("");
+	stash = read_buffer(fd, stash);
+	if (!stash)
+		return (NULL);
+	line = extract_line(stash);
 	if (!line)
+		return (NULL);
+	// update stash to keep remainder
+	temp = ft_strchr(stash, '\n');
+	if (temp)
 	{
-		free(buffer);
-		return (0);
-	}	
-	extracted_line = (char *) malloc (sizeof(char) * BUFFER_SIZE + 1);
-	
-	if (!extracted_line)
-	{
-		free(buffer);
-		return (0);
+		temp = ft_strdup(temp + 1);
+		free(stash);
+		stash = temp;
 	}
-	extracted_line = read_buffer(fd, buffer, line ,extracted_line);
-	free(line);
-	return (extracted_line);
+	else
+	{
+		free(stash);
+		stash = NULL;
+	}
+	return (line);
 }
 
 int	main(void)
-
 {
 	char	*str;
-	int fd = 1;
-	str = get_next_line(fd);
-	printf("the line is : %s\n",str);
-	free(str);
+	int		fd = open("file.txt", O_RDONLY);
+
+	if (fd < 0)
+	{
+		perror("open");
+		return (1);
+	}
+	while ((str = get_next_line(fd)))
+	{
+		printf("the line is : %s", str);
+		free(str);
+	}
+	close(fd);
 	return (0);
 }
+
+// Main is just for testing
+/*int	main(void)
+{
+	int		fd = open("file.txt", O_RDONLY);
+	char	*line;
+
+	while ((line = get_next_line(fd)))
+	{
+		printf("Line: %s", line);
+		free(line);
+	}
+	close(fd);
+	return (0);
+}*/
