@@ -53,10 +53,7 @@ char	*read_buffer(int fd, char *line)
 	while (bytes > 0)
 	{
 		buffer[bytes] = '\0';
-		if (ft_strlen(line) == 0)
-			temp = ft_strdup(buffer);
-		else
-			temp = ft_strjoin(line, buffer);
+		temp = ft_strjoin(line, buffer);
 		free(line);
 		line = temp;
 		if (ft_strchr(line, '\n'))
