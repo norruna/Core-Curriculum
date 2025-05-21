@@ -12,7 +12,7 @@
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-//# define BUFFER_SIZE 5 //comment when testing
+# define BUFFER_SIZE 5 //comment when testing
 
 # include <fcntl.h>
 # include <string.h>
@@ -22,11 +22,11 @@
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
-char    *ft_strcat(char *dest, const char *src);
-int     ft_strlen(const char *str);
+char	*ft_strcat(char *dest, const char *src);
+int		ft_strlen(const char *str);
 char	*read_buffer(int fd, char *line);
 char	*extract_line(char *line);
-char    *ft_strchr(const char *s, int c);
+char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s1, int start, size_t len);
 char	*ft_strdup(const char *s);
 #endif
