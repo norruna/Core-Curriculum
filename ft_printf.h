@@ -1,0 +1,11 @@
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+
+#include <stdio.h> //for printf testing to be deleted before pushing
+#include <unistd.h>
+#include <string.h>
+#include <stdarg.h> //contains va_list a type to be able to work with va_args copy start and end
+#include "libft/libft.h"
+int ft_printf(const char *, ...);
+
+#endif

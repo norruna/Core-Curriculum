@@ -15,7 +15,6 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -f
-LFT = cd libft && make $@
 
 SRC_FILES = main
 
@@ -23,22 +22,23 @@ SRCS = $(addsuffix .c, $(SRC_FILES))
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(NAME)
+all:
+	$(MAKE) -C libft all
+	$(MAKE) $(NAME)
 
 $(NAME): $(OBJS)
-	$(AR) $(NAME) $(LFT) $(OBJS)
+	$(AR) $(NAME) $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-bonus: $(NAME) $(BONUS_OBJS)
-	$(AR) $(NAME) $(BONUS_OBJS)
-
 clean:
 	$(RM) $(OBJS) $(BONUS_OBJS)
+	$(MAKE) -C libft clean
 
 fclean: clean
 	$(RM) $(NAME)
+	$(MAKE) -C libft fclean
 
 re: fclean all
 
