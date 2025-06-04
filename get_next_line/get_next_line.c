@@ -20,7 +20,7 @@ int	ft_strlen(const char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
+}//unnecessary
 
 char	*ft_strdup(const char *s)
 {
@@ -40,24 +40,28 @@ char	*ft_strdup(const char *s)
 	return (dest);
 }
 
-char	*read_buffer(int fd, char *line)
+char	*read_buffer(int fd)
 {
 	int		bytes;
 	char	*buffer;
-	char	*temp;
+	char	*temp ;
+	char	*mem;
 
+	temp = NULL;
 	buffer = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
 	bytes = read(fd, buffer, BUFFER_SIZE);
-	while (bytes > 0)
+	while (bytes > 0 && !ft_strchr(buffer, '\n'))
 	{
 		buffer[bytes] = '\0';
-		temp = ft_strjoin(line, buffer);
-		free(line);
-		line = temp;
-		if (ft_strchr(line, '\n'))
+		bytes = read(fd, temp, BUFFER_SIZE);
+		if (ft_strchr(temp, '\n') && bytes <= 0)
 			break ;
+		mem = buffer;
+		buffer = ft_strjoin(buffer, temp);
+		free(mem);
+		buffer = temp;
 		bytes = read(fd, buffer, BUFFER_SIZE);
 	}
 	free(buffer);
@@ -104,11 +108,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	if (!extracted_line)
-		extracted_line = ft_strdup("");
-	extracted_line = read_buffer(fd, extracted_line);
-	if (!extracted_line)
-		return (NULL);
+	extracted_line = read_buffer(fd);
 	line = extract_line(extracted_line);
 	if (!line)
 		return (NULL);
@@ -127,9 +127,9 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/*int	main(void)
+int	main(void)
 {
-	char	*str;
+	char	*str = NULL;
 	int		fd = open("file.txt", O_RDONLY);
 
 	if (fd < 0)
@@ -137,11 +137,14 @@ char	*get_next_line(int fd)
 		perror("open");
 		return (1);
 	}
-	while ((str = get_next_line(fd)))
+	while (fd != -1)
 	{
+		str = get_next_line(fd);
+		if (str == NULL)
+			break ;
 		printf("the line is : %s", str);
 		free(str);
 	}
 	close(fd);
 	return (0);
-}*/
+}
