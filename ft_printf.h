@@ -8,5 +8,6 @@
 #include "libft/libft.h"
 int ft_printf(const char *, ...);
 int write_string(va_list args,int c, int i);
+int	write_number(va_list args, int c, int i);
 
 #endif
