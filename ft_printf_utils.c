@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 15:52:07 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/06/04 18:20:41 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/06/04 18:25:47 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,7 @@ int	write_hexa(va_list args, int c, int i)
 	if (c == 'x' || c == 'p')
 	{
 		if (c == 'p')
-		{
 			ft_putstr_fd("0x", 1);
-		}
 		ft_putchar_fd(lower_tab[num / 16], 1);
 		ft_putchar_fd(lower_tab[num % 16], 1);
 	}
