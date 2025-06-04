@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:34:54 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/06/04 16:41:01 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/06/04 17:21:40 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	ft_printf(const char *str, ...)
 }
 
 int	main(void)
-{	char  c = 'W';
-	char  *s = "THERE";
-	ft_printf("ft_printf : hello %% %c %% %s it's Nelly\n", c,s);
-	printf("\nprintf : hello %% %c %% %s it's Nelly\n", c,s);
+{	//char  c = 'W';
+	//char  *s = "THERE";
+	ft_printf("ft_printf : hello %% %d %u %i it's Nelly\n",5,4,3 );
+	printf("\nprintf : hello %% %d %u %i it's Nelly\n", 5,4,3);
 	return (0);
 }
