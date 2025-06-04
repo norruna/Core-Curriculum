@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:34:54 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/06/04 17:21:40 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/06/04 18:21:21 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	ft_printf(const char *str, ...)
 				i = write_string(args, s[i + 1], i);
 			else if (s[i + 1] == 'd' || s[i + 1] == 'i' || s[i + 1] == 'u')
 				i = write_number(args, s[i + 1], i);
+			else if (s[i + 1] == 'p' || s[i + 1] == 'x'|| s[i + 1] == 'X')
+				i = write_hexa(args, s[i + 1], i);
 		}
 		ft_putchar_fd(s[i], 1);
 		i++;
@@ -39,8 +41,8 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {	//char  c = 'W';
-	//char  *s = "THERE";
-	ft_printf("ft_printf : hello %% %d %u %i it's Nelly\n",5,4,3 );
-	printf("\nprintf : hello %% %d %u %i it's Nelly\n", 5,4,3);
+	char  *s = malloc(1);
+	ft_printf("ft_printf : hello %x %X %p it's Nelly\n", 42,42, s);
+	printf("\nprintf : hello %x %X %p it's Nelly\n", 42,42, s);
 	return (0);
 }

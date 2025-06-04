@@ -10,5 +10,7 @@
 int ft_printf(const char *, ...);
 int write_string(va_list args,int c, int i);
 int	write_number(va_list args, int c, int i);
-
+int	write_hexa(va_list args, int c, int i);
+void	ft_putnbr_unsigned_fd(int n, int fd);
+void hexa_tab(void);
 #endif
