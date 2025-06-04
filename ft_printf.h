@@ -7,5 +7,6 @@
 #include <stdarg.h> //contains va_list a type to be able to work with va_args copy start and end
 #include "libft/libft.h"
 int ft_printf(const char *, ...);
+int write_string(va_list args,int c, int i);
 
 #endif
