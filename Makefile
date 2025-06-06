@@ -6,7 +6,7 @@
 #    By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/19 11:14:18 by mayahiao          #+#    #+#              #
-#    Updated: 2025/05/19 11:37:15 by mayahiao         ###   ########.fr        #
+#    Updated: 2025/06/06 17:25:34 by mayahiao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -f
 
-SRC_FILES = main
+SRC_FILES = ft_printf ft_printf_utils
 
 SRCS = $(addsuffix .c, $(SRC_FILES))
 

@@ -5,74 +5,106 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/04 15:52:07 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/06/04 18:25:47 by mayahiao         ###   ########.fr       */
+/*   Created: 2025/06/06 17:19:33 by mayahiao          #+#    #+#             */
+/*   Updated: 2025/06/06 17:28:24 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	write_string(va_list args, int c, int i)
+int	write_string(va_list args, int c)
 {
+	int		count;
+	char	*str;
+	char	ch;
+
+	count = 0;
 	if (c == 's')
-		ft_putstr_fd(va_arg(args, char *), 1);
-	else if (c == 'c')
-		ft_putchar_fd(va_arg(args, int), 1);
-	else if (c == '%')
-		ft_putchar_fd('%', 1);
-	i = i + 2;
-	return (i);
+	{
+		str = va_arg(args, char *);
+		if (!str)
+			str = "(null)";
+		while (*str)
+		{
+			count += write(1, str, 1);
+			str++;
+		}
+	}
+	if (c == 'c')
+	{
+		ch = (char)va_arg(args, int);
+		count += write(1, &ch, 1);
+	}
+	if (c == '%')
+		count += write(1, "%", 1);
+	return (count);
 }
 
-void	ft_putnbr_unsigned_fd(int n, int fd)
+void	ft_putnbr_ft(int n, int *count)
 {
 	char	c;
 
-	c = 0;
+	if (n == -2147483648)
+	{
+		*count += write(1, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		*count += write(1, "-", 1);
+		n = -n;
+	}
 	if (n > 9)
-	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
-	}
-	else
-	{
-		c = n + '0';
-		ft_putchar_fd(c, fd);
-	}
+		ft_putnbr_ft(n / 10, count);
+	c = n % 10 + '0';
+	*count += write(1, &c, 1);
 }
 
-int	write_number(va_list args, int c, int i)
+void	ft_putnbr_unsigned_fd(unsigned int n, int *count)
 {
-	if (c == 'i' || c == 'd')
-		ft_putnbr_fd(va_arg(args, int), 1);
-	else
-		ft_putnbr_unsigned_fd(va_arg(args, unsigned int), 1);
-	i = i + 2;
-	return (i);
+	char	c;
+
+	if (n > 9)
+		ft_putnbr_unsigned_fd(n / 10, count);
+	c = n % 10 + '0';
+	*count += write(1, &c, 1);
 }
 
-int	write_hexa(va_list args, int c, int i)
+int	write_number(va_list args, int c)
 {
-	char	*lower_tab; 
-	char	*upper_tab;
-	int		num;
+	int	count;
 
-	num = va_arg(args, int);
-	lower_tab = "0123456789abcdef";
-	upper_tab = "0123456789ABCDEF";
-	if (c == 'x' || c == 'p')
-	{
-		if (c == 'p')
-			ft_putstr_fd("0x", 1);
-		ft_putchar_fd(lower_tab[num / 16], 1);
-		ft_putchar_fd(lower_tab[num % 16], 1);
-	}
-	else 
-	{
-		ft_putchar_fd(upper_tab[num / 16], 1);
-		ft_putchar_fd(upper_tab[num % 16], 1);
-	}
-	i = i + 2;
-	return (i);
+	count = 0;
+	if (c == 'd' || c == 'i')
+		ft_putnbr_ft(va_arg(args, int), &count);
+	else if (c == 'u')
+		ft_putnbr_unsigned_fd(va_arg(args, unsigned int), &count);
+	return (count);
 }
 
+int	write_hexa(va_list args, int c)
+{
+	unsigned int	num;
+	char			*tab;
+	char			buffer[16];
+	int				i;
+	int				count;
+
+	num = va_arg(args, unsigned int);
+	count = 0;
+	i = 0;
+	if (c == 'x')
+		tab = "0123456789abcdef";
+	if (c == 'X')
+		tab = "0123456789ABCDEF";
+	if (num == 0)
+		return (write(1, "0", 1));
+	while (num != 0)
+	{
+		buffer[i++] = tab[num % 16];
+		num /= 16;
+	}
+	while (i > 0)
+		count += write(1, &buffer[--i], 1);
+	return (count);
+}
