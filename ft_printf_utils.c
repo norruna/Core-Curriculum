@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 17:19:33 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/06/06 17:28:24 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/06/06 18:22:30 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	write_string(va_list args, int c)
 {
 	int		count;
 	char	*str;
-	char	ch;
+	char	character;
 
 	count = 0;
 	if (c == 's')
@@ -32,15 +32,15 @@ int	write_string(va_list args, int c)
 	}
 	if (c == 'c')
 	{
-		ch = (char)va_arg(args, int);
-		count += write(1, &ch, 1);
+		character = (char)va_arg(args, int);
+		count += write(1, &character, 1);
 	}
 	if (c == '%')
 		count += write(1, "%", 1);
 	return (count);
 }
 
-void	ft_putnbr_ft(int n, int *count)
+void	ft_putnbr(int n, int *count)
 {
 	char	c;
 
@@ -55,17 +55,17 @@ void	ft_putnbr_ft(int n, int *count)
 		n = -n;
 	}
 	if (n > 9)
-		ft_putnbr_ft(n / 10, count);
+		ft_putnbr(n / 10, count);
 	c = n % 10 + '0';
 	*count += write(1, &c, 1);
 }
 
-void	ft_putnbr_unsigned_fd(unsigned int n, int *count)
+void	ft_putnbr_unsigned(unsigned int n, int *count)
 {
 	char	c;
 
 	if (n > 9)
-		ft_putnbr_unsigned_fd(n / 10, count);
+		ft_putnbr_unsigned(n / 10, count);
 	c = n % 10 + '0';
 	*count += write(1, &c, 1);
 }
@@ -76,9 +76,9 @@ int	write_number(va_list args, int c)
 
 	count = 0;
 	if (c == 'd' || c == 'i')
-		ft_putnbr_ft(va_arg(args, int), &count);
+		ft_putnbr(va_arg(args, int), &count);
 	else if (c == 'u')
-		ft_putnbr_unsigned_fd(va_arg(args, unsigned int), &count);
+		ft_putnbr_unsigned(va_arg(args, unsigned int), &count);
 	return (count);
 }
 

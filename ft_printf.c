@@ -6,33 +6,31 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 16:34:54 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/06/06 17:26:05 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/06/06 18:35:57 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-
 int	write_pointer(va_list args)
 {
-	uintptr_t	ptr;
-	char		*tab;
-	char		buffer[20];
-	int			i;
-	int			count;
+	unsigned long long	pointer;
+	char				*tab;
+	char				buffer[20];
+	int					i;
+	int					count;
 
-	ptr = (uintptr_t)va_arg(args, void *);
+	pointer = (unsigned long long)va_arg(args, void *);
 	tab = "0123456789abcdef";
 	i = 0;
 	count = 0;
-	if (!ptr)
+	if (!pointer)
 		return (write(1, "(nil)", 5));
 	count += write(1, "0x", 2);
-	while (ptr != 0)
+	while (pointer != 0)
 	{
-		buffer[i] = tab[ptr % 16];
-		ptr /= 16;
+		buffer[i] = tab[pointer % 16];
+		pointer /= 16;
 		i++;
 	}
 	while (i > 0)
@@ -40,6 +38,22 @@ int	write_pointer(va_list args)
 		i--;
 		count += write(1, &buffer[i], 1);
 	}
+	return (count);
+}
+
+int	format_specifier(va_list args, int c)
+{
+	int	count;
+
+	count = 0;
+	if (c == 's' || c == 'c' || c == '%')
+		count += write_string(args, c);
+	else if (c == 'd' || c == 'i' || c == 'u')
+		count += write_number(args, c);
+	else if (c == 'x' || c == 'X')
+		count += write_hexa(args, c);
+	else if (c == 'p')
+		count += write_pointer(args);
 	return (count);
 }
 
@@ -57,14 +71,7 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%' && str[i + 1] != '\0')
 		{
 			i++;
-			if (str[i] == 's' || str[i] == 'c' || str[i] == '%')
-				count += write_string(args, str[i]);
-			else if (str[i] == 'd' || str[i] == 'i' || str[i] == 'u')
-				count += write_number(args, str[i]);
-			else if (str[i] == 'x' || str[i] == 'X')
-				count += write_hexa(args, str[i]);
-			else if (str[i] == 'p')
-				count += write_pointer(args);
+			count += format_specifier(args, str[i]);
 		}
 		else
 			count += write(1, &str[i], 1);
@@ -74,12 +81,16 @@ int	ft_printf(const char *str, ...)
 	return (count);
 }
 
-
 /* int	main(void)
-{	//char  c = 'W';
-	//void *s = "jdfkf";
-	int num = ft_printf("ft_printf : hello %x %X  it's Nelly\n", 423,423);
-	printf("length is : %d", num);
-	printf("\nprintf : hello %x %X it's Nelly\n", 423,423);
+{	
+	void	*p = "example";
+	int num = ft_printf("ft_printf : * s : %s\n * c : %c\n * 
+		d : %d\n * u : %u\n * i : %i\n * p : %p\n * x : %x\n * X : %X\n * 
+			percent : %%\n\n","HELLO WORLD",'N',42,-42,42,p,42,42 );
+	printf("ft_printf number of characters : %d\n\n\n",num);
+	int num1 = printf("ft_printf : * s : %s\n * c : %c\n * 
+		d : %d\n * u : %u\n * i : %i\n * p : %p\n * x : %x\n * X : %X\n * 
+			percent : %%\n\n","HELLO WORLD",'N',42,-42,42,p,42,42 );
+	printf("printf number of characters : %d\n\n\n",num1);
 	return (0);
 } */
