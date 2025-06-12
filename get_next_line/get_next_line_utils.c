@@ -12,96 +12,80 @@
 
 #include "get_next_line.h"
 
-char	*ft_strcat(char *dest, const char *src)
+int	ft_strlen(const char *s)
 {
-	int	i;
-	int	j;
-
-	j = 0;
-	i = ft_strlen(dest);
-	while (src[j])
-	{
-		dest[i] = src[j];
-		j++;
+	int	i = 0;
+	while (s && s[i])
 		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*str;
-	int		i;
-
-	i = 0;
-	str = (char *) malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!str)
-		return (0);
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	str[i] = '\0';
-	ft_strcat(str, s2);
-	return (str);
+	return (i);
 }
 
 char	*ft_strchr(const char *s, int c)
 {
-	int				i;
-	unsigned char	*str;
-	unsigned char	testc;
-
-	str = (unsigned char *)s;
-	testc = (unsigned char) c;
-	i = 0;
 	if (!s)
 		return (NULL);
-	while (str[i] != testc)
+	while (*s)
+		if (*s++ == (char)c)
+			return ((char *)(s - 1));
+	return ((char *)(c == '\0' ? s : NULL));
+}
+
+char	*ft_strdup(const char *s)
+{
+	int		i = 0;
+	char	*dup = malloc(ft_strlen(s) + 1);
+
+	if (!dup)
+		return (NULL);
+	while (s[i])
 	{
-		if (str[i] == '\0')
-			return (NULL);
+		dup[i] = s[i];
 		i++;
 	}
-	return ((char *)&str[i]);
+	dup[i] = '\0';
+	return (dup);
 }
 
-size_t	malloc_size(char const *s1, unsigned int start, size_t len)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	size_t	size;
+	int		i = 0, j = 0;
+	char	*str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 
-	size = 0;
-	while (s1[start] && size < len)
-	{
-		size++;
-		start++;
-	}
-	return (size);
-}
-
-char	*ft_substr(char const *s1, int start, size_t len)
-{
-	char	*result;
-	size_t	i;
-	size_t	size;
-
-	if (!s1)
+	if (!str)
 		return (NULL);
-	if (start > ft_strlen(s1))
-		return (ft_strdup(""));
-	size = malloc_size(s1, start, len);
-	result = (char *)malloc((size + 1) * sizeof(char));
-	if (!result)
+	while (s1 && s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	while (s2 && s2[j])
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	free(s1);
+	return (str);
+}
+
+char	*extract_line(char *s)
+{
+	int		i = 0;
+	char	*line;
+
+	if (!s || !s[0])
+		return (NULL);
+	while (s[i] && s[i] != '\n')
+		i++;
+	line = malloc(s[i] == '\n' ? i + 2 : i + 1);
+	if (!line)
 		return (NULL);
 	i = 0;
-	while (i < size)
+	while (s[i] && s[i] != '\n')
 	{
-		result[i] = s1[start];
+		line[i] = s[i];
 		i++;
-		start++;
 	}
-	result[i] = '\0';
-	return (result);
+	if (s[i] == '\n')
+		line[i++] = '\n';
+	line[i] = '\0';
+	return (line);
 }
+
