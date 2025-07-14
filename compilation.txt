@@ -1,0 +1,8 @@
+gcc so_long_home.c -Lminilibx-linux -lmlx -o so_long -lX11 -lXext
+
+
+# apparently i still get an error with valgrind although no leaks, could be
+a false positive from mlx and from my tablet.
+so with the help of chatgpt i created a suppressing file that should be run
+with valgrind using these flags :
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=mlx.supp ./so_long
