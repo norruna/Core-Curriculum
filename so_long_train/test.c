@@ -20,29 +20,25 @@ int	count_map_lines(char *file)
 	close(fd);
 	return (count);
 }
-/*not the correct version, correct version is on 42cluster*/
+//works with no leaks and no errors
 int	is_rectangular(char *file)
 {
-	int		expected_len;
+	int		count;
+	int		i;
 	int		fd;
 	char	*line;
+	char	*next_line;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (0);
+	i = 0;
+	count = count_map_lines(file);
 	line = get_next_line(fd);
-	if (!line)
-		return (0);
-	if (line[ft_strlen(line) - 1] == '\n') // remove newline
-		line[ft_strlen(line) - 1] = '\0';
-	expected_len = ft_strlen(line);
-	free(line);
-	line = get_next_line(fd);
-	while (line)
+	next_line = line;
+	while (i < count) 
 	{
-		if (line[ft_strlen(line) - 1] == '\n')
-			line[ft_strlen(line) - 1] = '\0';
-		if (ft_strlen(line) != expected_len)
+		if (strlen(line) != strlen(next_line)) //change strlen to ft_strlen
 		{
 			free(line);
 			close(fd);
@@ -50,8 +46,10 @@ int	is_rectangular(char *file)
 		}
 		free(line);
 		line = get_next_line(fd);
+		next_line = line;
+		i++;
 	}
-	close(fd);
+	close (fd);
 	return (1);
 }
 

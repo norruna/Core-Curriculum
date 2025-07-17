@@ -1,7 +1,0 @@
-{
-   mlx_writev_uninit
-   Memcheck:Param
-   writev(vector[0])
-   fun:writev
-   obj:/usr/lib/*/libxcb.so*
-}
