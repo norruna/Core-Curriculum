@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 16:21:34 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/07/17 20:54:56 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/08/17 18:59:36 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,9 +240,9 @@ void	draw_map(char **map, t_mlx_param *param)
     void *img_player = mlx_xpm_file_to_image(param->ptr, "../images/Player.xpm", &height, &width);
     void *img_dad = mlx_xpm_file_to_image(param->ptr, "../images/Dad.xpm", &height, &width);
     void *img_bed = mlx_xpm_file_to_image(param->ptr, "../images/Bed.xpm", &height, &width);
-	//void *img_grass = mlx_xpm_file_to_image(param->ptr, "../images/Grass.xpm", &height, &width);
+	void *img_grass = mlx_xpm_file_to_image(param->ptr, "../images/Grass.xpm", &height, &width);
 
-	if (!img_bed || !img_dad || !img_player || !img_wall)
+	if (!img_bed || !img_dad || !img_player || !img_wall || !img_grass)
 	{
 		printf ("couldnt find image\n"); //replace later with ftprintf
 		return ;
@@ -261,8 +261,8 @@ void	draw_map(char **map, t_mlx_param *param)
 				mlx_put_image_to_window(param->ptr, param->window, img_dad, j * TILE,i * TILE);
 			else if (map[i][j] == 'E')
 				mlx_put_image_to_window(param->ptr, param->window, img_bed, j * TILE,i * TILE);
-		//	else if (map[i][j] == '0')
-			//	mlx_put_image_to_window(param->ptr, param->window, img_grass, j * TILE,i * TILE);
+			else if (map[i][j] == '0')
+				mlx_put_image_to_window(param->ptr, param->window, img_grass, j * TILE,i * TILE);
 			j++;
 		}
 		i++;
@@ -298,15 +298,26 @@ void	draw_map(char **map, t_mlx_param *param)
 /*---------------------------*/
 /*****************************/
 
+
+/*close window after pressing X button*/
+
+int	close_after_x(t_mlx_param *param)
+{
+	printf("You clicked X. Exiting ....\n"); //replace with ft_printf
+	mlx_loop_end(param->ptr);
+	return (0);
+}
+
 int key_presses(int keysym, t_mlx_param *param)
 {
 	//change printf to ft_printf later
-	if (keysym == XK_Escape)
+	if (keysym == XK_Escape /*|| keysym == */)
 	{
 		printf("You pressed the ESC key, exiting ...\n");
 		mlx_loop_end(param->ptr); //doesnt segfault and also doesnt leak like exit(0)
 	}
 	printf("Thanks for pressing the %d key, nothing happened yet ..\n", keysym);
+	mlx_hook(param->window, 17, 0, close_after_x,param);
 	return (0);
 }
 
