@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:30:08 by nellys-simu       #+#    #+#             */
-/*   Updated: 2025/11/11 13:03:47 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:12:06 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_stack *parse_stack(char **argv)
 		long value = ft_atol(argv[i]);
 		if (value < INT_MIN  || value > INT_MAX)
 		{
-			printf ("Error, value out of bound");
+			printf ("Error, value out of bound\n");
 			ft_freestack(&a);
 		}
 		t_stack *node = ft_newnode((int)value);
