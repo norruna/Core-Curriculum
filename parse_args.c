@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:30:08 by nellys-simu       #+#    #+#             */
-/*   Updated: 2025/11/11 13:12:06 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/11/11 19:33:50 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,17 @@ long	ft_atol(const char *str)
 	}
 	return (sign * nb);
 }
+int	check_duplicate(t_stack *check, int var)
+{
+	t_stack *temp = check;
+	while (temp)
+	{
+		if (temp -> value == var)
+			return (0);
+		temp = temp ->next;
+	}
+	return (1);
+}
 
 t_stack *parse_stack(char **argv)
 {
@@ -90,6 +101,13 @@ t_stack *parse_stack(char **argv)
 		{
 			printf ("Error, value out of bound\n");
 			ft_freestack(&a);
+			return (NULL);
+		}
+		if (check_duplicate(a, (int)value) == 0)
+		{
+			printf("error, there is a duplicate\n");
+			ft_freestack(&a);
+			return (NULL);
 		}
 		t_stack *node = ft_newnode((int)value);
 		ft_add_back(&a, node);
