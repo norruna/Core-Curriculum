@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+        */
+/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:30:08 by nellys-simu       #+#    #+#             */
-/*   Updated: 2025/11/10 18:33:19 by nellys-simu      ###   ########.fr       */
+/*   Updated: 2025/11/11 13:03:47 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Libft/libft.h"
-#include <stdio.h> //printf testing
-
-
-typedef struct s_stack
-{
-	int				value;
-	int				index;
-	struct s_stack	*next;
-	struct s_stack	*prev;
-}	t_stack;
+#include "push_swap.h"
 
 t_stack	*ft_newnode(int value)
 {
@@ -60,6 +50,32 @@ void	ft_freestack(t_stack **stack)
 		free(*stack);
 		*stack = tmp;
 	}
+	*stack = NULL; //added as extra measure to make sure its freed so no leaks *hopefully*
+}
+
+long	ft_atol(const char *str)
+{
+	int	i;
+	int	sign;
+	long	nb;
+
+	nb = 0;
+	sign = 1;
+	i = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = sign * -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb = (nb * 10) + (str[i] - '0');
+		i++;
+	}
+	return (sign * nb);
 }
 
 t_stack *parse_stack(char **argv)
@@ -69,8 +85,13 @@ t_stack *parse_stack(char **argv)
 
 	while (argv[i])
 	{
-		int value = ft_atoi(argv[i]);
-		t_stack *node = ft_newnode(value);
+		long value = ft_atol(argv[i]);
+		if (value < INT_MIN  || value > INT_MAX)
+		{
+			printf ("Error, value out of bound");
+			ft_freestack(&a);
+		}
+		t_stack *node = ft_newnode((int)value);
 		ft_add_back(&a, node);
 		i++;
 	}

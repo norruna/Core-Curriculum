@@ -3,27 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   input_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+        */
+/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 19:58:10 by nellys-simu       #+#    #+#             */
-/*   Updated: 2025/11/10 18:32:57 by nellys-simu      ###   ########.fr       */
+/*   Updated: 2025/11/11 12:39:34 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Libft/libft.h"
-#include <stdio.h> //printf testing
+#include "push_swap.h"
 
-t_stack *parse_stack(char **argv);
-void	ft_freestack(t_stack **stack);
-void	ft_add_back(t_stack **stack, t_stack *new);
-t_stack	*ft_newnode(int value);
-typedef struct s_stack
-{
-	int				value;
-	int				index;
-	struct s_stack	*next;
-	struct s_stack	*prev;
-}	t_stack;
 /*here i check if the individual strings meet the requirements*/
 int str_check(char *str)
 {
@@ -87,20 +75,21 @@ int	main(int argc, char **argv)
 {
 	t_stack *a = NULL;
 	t_stack *b = NULL;
+	int	res = 0;
 	if (argc == 1)
 		return (0);
 	if (argc == 2)
 	{
 		char **result = ft_split((char *)argv[1], 32); //if leak might be split needing free
-		arg_check(result);
+		res = arg_check(result);
+		a = parse_stack(argv);
 		ft_free(result);
 	}
 	else
-		arg_check(argv + 1);
-	if (arg_check == 1)
 	{
-			a = parse_stack(argv);
-
+		res = arg_check(argv + 1);
+		if (res == 1)
+			a = parse_stack(argv + 1);
 	}
 	ft_freestack(&a);
 	ft_freestack(&b);
