@@ -6,13 +6,24 @@
 /*   By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 19:58:10 by nellys-simu       #+#    #+#             */
-/*   Updated: 2025/11/10 17:23:36 by nellys-simu      ###   ########.fr       */
+/*   Updated: 2025/11/10 18:32:57 by nellys-simu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Libft/libft.h"
 #include <stdio.h> //printf testing
 
+t_stack *parse_stack(char **argv);
+void	ft_freestack(t_stack **stack);
+void	ft_add_back(t_stack **stack, t_stack *new);
+t_stack	*ft_newnode(int value);
+typedef struct s_stack
+{
+	int				value;
+	int				index;
+	struct s_stack	*next;
+	struct s_stack	*prev;
+}	t_stack;
 /*here i check if the individual strings meet the requirements*/
 int str_check(char *str)
 {
@@ -74,6 +85,8 @@ void	ft_free(char **result)
 }
 int	main(int argc, char **argv)
 {
+	t_stack *a = NULL;
+	t_stack *b = NULL;
 	if (argc == 1)
 		return (0);
 	if (argc == 2)
@@ -84,5 +97,12 @@ int	main(int argc, char **argv)
 	}
 	else
 		arg_check(argv + 1);
+	if (arg_check == 1)
+	{
+			a = parse_stack(argv);
+
+	}
+	ft_freestack(&a);
+	ft_freestack(&b);
 	return (0);
 }
