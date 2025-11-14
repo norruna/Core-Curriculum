@@ -91,6 +91,7 @@ int	main(int argc, char **argv)
 	}
 
 	/*give each value its rank/index:*/
+	assign_indices(a);
 	sorting(a, b);
 	ft_freestack(&a);
 	ft_freestack(&b);
