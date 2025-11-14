@@ -6,39 +6,38 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 19:58:10 by nellys-simu       #+#    #+#             */
-/*   Updated: 2025/11/11 13:14:17 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/11/14 17:20:32 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*here i check if the individual strings meet the requirements*/
-int str_check(char *str)
+int	str_check(char *str)
 {
-		if (!str) //if empty, return 0
+	if (!str) //if empty, return 0
+		return (0);
+	if (ft_strlen(str)  == 1) //if single digit
+	{
+		if (str[0] < '0' || str[0] > '9')
 			return (0);
-		if (ft_strlen(str)  == 1) //if single digit
+	}
+	else
+	{
+		int i = 0;
+		if (str[0] == '+' || str[0] == '-')
 		{
-			if (str[0] < '0' || str[0] > '9')
+			if (!str[1] || (str[1] < '0' || str[1] > '9'))
 				return (0);
+			i++;
 		}
-		else
+		while (str[i] && (i < ((int)ft_strlen(str))))
 		{
-			int i = 0;
-			if (str[0] == '+' || str[0] == '-')
-			{
-				if (!str[1] || (str[1] < '0' || str[1] > '9'))
-					return (0);
-				i++;
-			}
-			while (str[i] && (i < ((int)ft_strlen(str))))
-			{
-				if (str[i] < '0' || str[i] > '9')
-					return (0);
-				i++;
-			}
+			if (str[i] < '0' || str[i] > '9')
+				return (0);
+			i++;
 		}
-
+	}
 	return (1);
 }
 
@@ -49,7 +48,6 @@ int arg_check(char **str)
 	while (str[i])
 	{
 		int r = str_check(str[i]);
-		printf("the check is : %d \n", r);
 		if (r == 0)
 		{				
 			printf("nope\n");
@@ -91,6 +89,9 @@ int	main(int argc, char **argv)
 		if (res == 1)
 			a = parse_stack(argv + 1);
 	}
+
+	/*give each value its rank/index:*/
+	sorting(a, b);
 	ft_freestack(&a);
 	ft_freestack(&b);
 	return (0);

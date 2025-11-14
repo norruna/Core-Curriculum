@@ -6,7 +6,7 @@
 #    By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/11 13:15:34 by mayahiao          #+#    #+#              #
-#    Updated: 2025/11/11 13:30:44 by mayahiao         ###   ########.fr        #
+#    Updated: 2025/11/14 16:51:41 by mayahiao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -f
 
-SRC_FILES = input_check parse_args
+SRC_FILES = input_check radix parse_args instructions instructionsV2
 
 SRCS = $(addsuffix .c, $(SRC_FILES))
 

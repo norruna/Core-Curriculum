@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:30:08 by nellys-simu       #+#    #+#             */
-/*   Updated: 2025/11/11 19:33:50 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/11/14 17:37:58 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 t_stack	*ft_newnode(int value)
 {
-	t_stack	*node = malloc(sizeof(t_stack));
+	t_stack	*node;
+
+	node = malloc(sizeof(t_stack));
 	if (!node)
 		return (NULL);
 	node->value = value;
@@ -23,6 +25,7 @@ t_stack	*ft_newnode(int value)
 	node->prev = NULL;
 	return (node);
 }
+
 void	ft_add_back(t_stack **stack, t_stack *new)
 {
 	t_stack	*last;
@@ -53,7 +56,7 @@ void	ft_freestack(t_stack **stack)
 	*stack = NULL; //added as extra measure to make sure its freed so no leaks *hopefully*
 }
 
-long	ft_atol(const char *str)
+long	ft_atol(const char *str) //just modified atoi to handle long numbers
 {
 	int	i;
 	int	sign;
@@ -89,29 +92,45 @@ int	check_duplicate(t_stack *check, int var)
 	return (1);
 }
 
+
 t_stack *parse_stack(char **argv)
 {
-	t_stack *a = NULL;
-	int i = 0;
+    t_stack *a;
+    long    value;
+    int     i;
 
-	while (argv[i])
-	{
-		long value = ft_atol(argv[i]);
-		if (value < INT_MIN  || value > INT_MAX)
-		{
-			printf ("Error, value out of bound\n");
-			ft_freestack(&a);
-			return (NULL);
-		}
-		if (check_duplicate(a, (int)value) == 0)
-		{
-			printf("error, there is a duplicate\n");
-			ft_freestack(&a);
-			return (NULL);
-		}
-		t_stack *node = ft_newnode((int)value);
-		ft_add_back(&a, node);
-		i++;
-	}
-	return (a);
+    i = 0;
+    a = NULL;
+    while (argv[i])
+    {
+        value = ft_atol(argv[i]);
+        if (value < INT_MIN || value > INT_MAX)
+            return (ft_putstr_fd("Error\n", 2), ft_freestack(&a), NULL);
+        if (!check_duplicate(a, (int)value))
+            return (ft_putstr_fd("Error\n", 2), ft_freestack(&a), NULL);
+        ft_add_back(&a, ft_newnode((int)value));
+        i++;
+    }
+    return (a);
+}
+
+void assign_indices(t_stack *a)
+{
+    t_stack *tmp1, *tmp2;
+    int idx;
+
+    tmp1 = a;
+    while (tmp1)
+    {
+        idx = 0;
+        tmp2 = a;
+        while (tmp2)
+        {
+            if (tmp2->value < tmp1->value)
+                idx++;
+            tmp2 = tmp2->next;
+        }
+        tmp1->index = idx;
+        tmp1 = tmp1->next;
+    }
 }
