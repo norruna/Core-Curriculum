@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 19:46:13 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/11/14 17:04:18 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/11/15 18:15:57 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ void	push(t_stack **first, t_stack **second)
 	if (!first || !*first)
 		return ;
 	node = *first;
-	*first = (*first)->next;
+	*first = node->next;
 	if (*first)
 		(*first)->prev = NULL;
 	node->next = *second;
 	if (*second)
 		(*second)->prev = node;
+	node->prev = NULL;
 	*second = node;
 }
 

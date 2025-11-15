@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:58:49 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/11/15 14:10:01 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/11/15 18:45:42 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,22 @@ void	push_index_to_b(t_stack **a, t_stack **b, int index)
 	int pos;
 	int size;
 
-	pos = find_position(*a, index);
-	size = stack_size(*a);
-	while (pos > 0)
+	while (1)
 	{
+		pos = find_position(*a, index);
+		if (pos == 0)
+			break;
+
+		size = stack_size(*a);
+
 		if (pos <= size / 2)
 			ra(a);
 		else
 			rra(a);
-		pos = find_position(*a, index);
 	}
 	pb(b, a);
 }
+
 
 void	sort_two(t_stack **a)
 {
@@ -88,6 +92,9 @@ void	sort_three(t_stack **a)
 		rra(a);
 }
 
+
+
+
 void	sort_five(t_stack **a, t_stack **b)
 {
 	push_index_to_b(a, b, 0);
@@ -113,21 +120,25 @@ int	get_max_bits(t_stack *a)
 	return bits;
 }
 
-void	radix_sort(t_stack **a, t_stack **b)
+/* void	radix_sort(t_stack **a, t_stack **b)
 {
 	int bits;
 	int i;
 	int j;
-
+	
 	if (!a || !*a)
 		return;
-
+	int	 size;
 	bits = get_max_bits(*a);
+	 printf("Max bits: %d\n", bits);  // Debug: Print number of bits to be processed
 	i = 0;
 	while (i < bits)
 	{
 		j = 0;
-		while (j <= bits)
+		size = stack_size(*a);
+		 printf("Processing bit: %d\n", i);  // Debug: Show which bit we are processing
+
+		while (j < size)
 		{
 			if ((((*a)->index >> i) & 1) == 0)
 				pb(b, a);
@@ -139,7 +150,57 @@ void	radix_sort(t_stack **a, t_stack **b)
 			pa(a, b);
 		i++;
 	}
+} */
+
+void	radix_sort(t_stack **a, t_stack **b)
+{
+	int max_index;
+	int bits;
+	int i;
+
+	if (!a || !*a)
+		return;
+
+	// Find max index
+	t_stack *tmp = *a;
+	max_index = 0;
+	while (tmp)
+	{
+		if (tmp->index > max_index)
+			max_index = tmp->index;
+		tmp = tmp->next;
+	}
+
+	// Number of bits needed
+	bits = 0;
+	while ((max_index >> bits) != 0)
+		bits++;
+
+	for (i = 0; i < bits; i++)
+	{
+		int processed = 0;
+		int total = stack_size(*a);
+
+		while (processed < total)
+		{
+			if (((*a)->index >> i) & 1)
+				ra(a);
+			else
+				pb(a, b);
+			processed++;
+		}
+
+		while (*b)
+			pa(a, b);
+	}
 }
+
+
+
+
+
+
+
 int		is_it_sorted(t_stack **container)
 {
 	t_stack *a;
@@ -161,12 +222,12 @@ void	sorting(t_stack **a, t_stack **b)
 	size = stack_size(*a);
 	if (is_it_sorted(a))
 		return ;
-	if (!is_it_sorted(a) && size == 2)
+	if (size == 2)
 		sort_two(a);
-	else if (!is_it_sorted(a) && size == 3)
+	else if (size == 3)
 		sort_three(a);
-	else if (!is_it_sorted(a) && size <= 5)
+	else if (size <= 5)
 		sort_five(a, b);
-	else if (!is_it_sorted(a))
+	else
 		radix_sort(a, b);
 }
