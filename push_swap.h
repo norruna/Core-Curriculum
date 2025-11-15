@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 12:36:37 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/11/14 17:13:30 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/11/15 15:34:36 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		rrr(t_stack **a, t_stack **b);
 
 
 /*sorting*/
-void		sorting(t_stack *a, t_stack *b);
+void		sorting(t_stack **a, t_stack **b);
 void		radix_sort(t_stack **a, t_stack **b);
 int			stack_size(t_stack *a);
 int			get_max(t_stack *a);
@@ -66,5 +66,5 @@ void		sort_two(t_stack **a);
 void		sort_three(t_stack **a);
 void		sort_five(t_stack **a, t_stack **b);
 
-void assign_indices(t_stack *a);
+void		indexing(t_stack *a);
 #endif

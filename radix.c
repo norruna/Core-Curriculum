@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:58:49 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/11/14 17:47:22 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/11/15 14:10:01 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 int	stack_size(t_stack *a)
 {
-	int size = 0;
+	int	size;
+
+	size = 0;
 	while (a)
 	{
 		size++;
 		a = a->next;
 	}
-	return size;
+	return (size);
 }
 
 int	find_position(t_stack *a, int index)
@@ -116,7 +118,6 @@ void	radix_sort(t_stack **a, t_stack **b)
 	int bits;
 	int i;
 	int j;
-	int size;
 
 	if (!a || !*a)
 		return;
@@ -125,9 +126,8 @@ void	radix_sort(t_stack **a, t_stack **b)
 	i = 0;
 	while (i < bits)
 	{
-		size = stack_size(*a);
 		j = 0;
-		while (j < size)
+		while (j <= bits)
 		{
 			if ((((*a)->index >> i) & 1) == 0)
 				pb(b, a);
@@ -140,20 +140,33 @@ void	radix_sort(t_stack **a, t_stack **b)
 		i++;
 	}
 }
+int		is_it_sorted(t_stack **container)
+{
+	t_stack *a;
+	a = *container;
 
-void	sorting(t_stack *a, t_stack *b)
+	while (a && a->next)
+	{
+		if (a->next->index < a->index)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
+
+void	sorting(t_stack **a, t_stack **b)
 {
 	int size;
 
-	size = stack_size(a);
-	assign_indices(a); // must assign indices first
-
-	if (size == 2)
-		sort_two(&a);
-	else if (size == 3)
-		sort_three(&a);
-	else if (size <= 5)
-		sort_five(&a, &b);
-	else
-		radix_sort(&a, &b);
+	size = stack_size(*a);
+	if (is_it_sorted(a))
+		return ;
+	if (!is_it_sorted(a) && size == 2)
+		sort_two(a);
+	else if (!is_it_sorted(a) && size == 3)
+		sort_three(a);
+	else if (!is_it_sorted(a) && size <= 5)
+		sort_five(a, b);
+	else if (!is_it_sorted(a))
+		radix_sort(a, b);
 }
