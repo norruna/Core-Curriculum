@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 19:58:10 by nellys-simu       #+#    #+#             */
-/*   Updated: 2025/11/15 18:37:30 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/11/16 23:58:48 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,7 @@ int arg_check(char **str)
 }
 
 /*main test*/
-void	ft_free(char **result)
-{
-	int	i = 0;
-	while (result[i] != NULL)
-	{
-		free(result[i]);
-		i++;
-	}
-	free(result);
-}
+
 
 void	print_stack(t_stack *stack, const char *name)
 {
@@ -103,6 +94,18 @@ void	print_stack(t_stack *stack, const char *name)
 		stack = stack->next;
 	}
 }
+
+void	ft_free(char **result)
+{
+	int	i = 0;
+	while (result[i] != NULL)
+	{
+		free(result[i]);
+		i++;
+	}
+	free(result);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack *a = NULL;
@@ -129,14 +132,7 @@ int	main(int argc, char **argv)
 			a = parse_stack(argv + 1);
 	}
 	indexing(a);
-	t_stack *tmp = a;
-while (tmp)
-{
-    printf("value = %d | index = %d\n", tmp->value, tmp->index);
-    tmp = tmp->next;
-}
 	sorting(&a, &b);
-	print_stack(a, "A");
 	ft_freestack(&a);
 	ft_freestack(&b);
 	return (0);

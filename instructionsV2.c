@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:56:28 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/11/14 17:31:07 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/11/16 23:05:45 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void    ss(t_stack **a, t_stack **b)
 /* ------------ PUSH -------------- */
 void    pa(t_stack **a, t_stack **b)
 {
-    push(a, b);
+    push(b, a);
     ft_putstr_fd("pa\n", 1);
 }
 

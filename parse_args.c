@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:30:08 by nellys-simu       #+#    #+#             */
-/*   Updated: 2025/11/15 17:32:36 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/11/16 23:46:27 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,14 @@ int	is_sorted(char *array, int size)
 {
 	int	i;
 
+	if (!array || size <= 1)
+		return (0);
 	i = 1;
 	while (i < size)
 	{
 		if (array[i - 1] > array[i])
 			return (0);
+		i++;
 	}
 	return (1);
 }
@@ -113,7 +116,7 @@ void	indexing(t_stack *a)
 	if (!a)
 		return ;
 	int size = stack_size(a);
-	if (size == 0)
+	if (size <= 0)
 		return ;
 	int *array = malloc(sizeof(int) * size);
 	if (!array)
@@ -151,7 +154,6 @@ void	indexing(t_stack *a)
 			while (array[i] != temp_stack->value)
 				i++;
 			temp_stack->index = i;
-			printf("Assigned index %d to value %d\n", temp_stack->index, temp_stack->value);  // Debug line
 			temp_stack = temp_stack->next;
 	}
 	free(array);

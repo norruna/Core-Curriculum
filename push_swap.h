@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 12:36:37 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/11/15 15:34:36 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/11/16 22:54:13 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		sa(t_stack **a);
 void		sb(t_stack **b);
 void		ss(t_stack **a, t_stack **b);
 void		pa(t_stack **a, t_stack **b);
-void		pb(t_stack **b, t_stack **a);
+void		pb(t_stack **a, t_stack **b);
 void		ra(t_stack **a);
 void		rb(t_stack **b);
 void		rr(t_stack **a, t_stack **b);

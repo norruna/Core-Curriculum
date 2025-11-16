@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:58:49 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/11/15 18:45:42 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/11/16 23:39:04 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,41 +25,6 @@ int	stack_size(t_stack *a)
 	return (size);
 }
 
-int	find_position(t_stack *a, int index)
-{
-	int pos = 0;
-	while (a)
-	{
-		if (a->index == index)
-			return pos;
-		a = a->next;
-		pos++;
-	}
-	return -1;
-}
-
-void	push_index_to_b(t_stack **a, t_stack **b, int index)
-{
-	int pos;
-	int size;
-
-	while (1)
-	{
-		pos = find_position(*a, index);
-		if (pos == 0)
-			break;
-
-		size = stack_size(*a);
-
-		if (pos <= size / 2)
-			ra(a);
-		else
-			rra(a);
-	}
-	pb(b, a);
-}
-
-
 void	sort_two(t_stack **a)
 {
 	if ((*a)->value > (*a)->next->value)
@@ -73,7 +38,7 @@ void	sort_three(t_stack **a)
 	int third = (*a)->next->next->value;
 
 	if (first < second && second < third)
-		return;
+		return ;
 	else if (first > second && first < third)
 		sa(a);
 	else if (first > second && second > third)
@@ -92,17 +57,53 @@ void	sort_three(t_stack **a)
 		rra(a);
 }
 
-
-
-
 void	sort_five(t_stack **a, t_stack **b)
 {
-	push_index_to_b(a, b, 0);
-	push_index_to_b(a, b, 1);
+	int push_count = stack_size(*a) == 5 ? 2 : 1;
+
+	for (int k = 0; k < push_count; k++)
+	{
+		// Find smallest index in A
+		t_stack *tmp = *a;
+		int min_index = tmp->index;
+		while (tmp)
+		{
+			if (tmp->index < min_index)
+				min_index = tmp->index;
+			tmp = tmp->next;
+		}
+
+		// Bring the node with min_index to top
+		int rotations = 0;
+		tmp = *a;
+		while (tmp->index != min_index)
+		{
+			rotations++;
+			tmp = tmp->next;
+		}
+
+		int size = stack_size(*a);
+		if (rotations <= size / 2)
+			for (int i = 0; i < rotations; i++)
+				ra(a);
+		else
+			for (int i = 0; i < size - rotations; i++)
+				rra(a);
+
+		// Push smallest to B
+		pb(a, b);
+	}
+
+	// Sort remaining 3 elements in A
 	sort_three(a);
-	pa(a, b);
-	pa(a, b);
+
+	// Push back from B to A
+	while (*b)
+		pa(a, b);
 }
+
+
+
 
 int	get_max_bits(t_stack *a)
 {
@@ -120,28 +121,25 @@ int	get_max_bits(t_stack *a)
 	return bits;
 }
 
-/* void	radix_sort(t_stack **a, t_stack **b)
+void	radix_sort(t_stack **a, t_stack **b)
 {
-	int bits;
-	int i;
-	int j;
-	
-	if (!a || !*a)
-		return;
-	int	 size;
+	int	i;
+	int	j;
+	int	bits;
+	int	size;
+
+	size = stack_size(*a);
+	t_stack *temp;
 	bits = get_max_bits(*a);
-	 printf("Max bits: %d\n", bits);  // Debug: Print number of bits to be processed
 	i = 0;
 	while (i < bits)
 	{
 		j = 0;
-		size = stack_size(*a);
-		 printf("Processing bit: %d\n", i);  // Debug: Show which bit we are processing
-
 		while (j < size)
 		{
-			if ((((*a)->index >> i) & 1) == 0)
-				pb(b, a);
+			temp = *a;
+			if (((temp->index >> i) & 1) == 0)
+				pb(a, b);
 			else
 				ra(a);
 			j++;
@@ -150,56 +148,7 @@ int	get_max_bits(t_stack *a)
 			pa(a, b);
 		i++;
 	}
-} */
-
-void	radix_sort(t_stack **a, t_stack **b)
-{
-	int max_index;
-	int bits;
-	int i;
-
-	if (!a || !*a)
-		return;
-
-	// Find max index
-	t_stack *tmp = *a;
-	max_index = 0;
-	while (tmp)
-	{
-		if (tmp->index > max_index)
-			max_index = tmp->index;
-		tmp = tmp->next;
-	}
-
-	// Number of bits needed
-	bits = 0;
-	while ((max_index >> bits) != 0)
-		bits++;
-
-	for (i = 0; i < bits; i++)
-	{
-		int processed = 0;
-		int total = stack_size(*a);
-
-		while (processed < total)
-		{
-			if (((*a)->index >> i) & 1)
-				ra(a);
-			else
-				pb(a, b);
-			processed++;
-		}
-
-		while (*b)
-			pa(a, b);
-	}
 }
-
-
-
-
-
-
 
 int		is_it_sorted(t_stack **container)
 {
