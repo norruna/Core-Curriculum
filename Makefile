@@ -6,7 +6,7 @@
 #    By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/11 13:15:34 by mayahiao          #+#    #+#              #
-#    Updated: 2025/11/15 14:15:35 by mayahiao         ###   ########.fr        #
+#    Updated: 2025/11/17 02:55:16 by mayahiao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,18 +23,19 @@ SRCS = $(addsuffix .c, $(SRC_FILES))
 
 OBJS = $(SRCS:.c=.o)
 
-all:
-	$(MAKE) -C Libft all
-	$(MAKE) $(NAME)
+all: Libft/libft.a $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) Libft/libft.a
 	$(CC) $(CFLAGS) $(OBJS) Libft/libft.a -o $(NAME)
+
+Libft/libft.a:
+	$(MAKE) -C Libft all
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	$(RM) $(OBJS)
 	$(MAKE) -C Libft clean
 
 fclean: clean
@@ -43,5 +44,5 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
 
