@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:30:08 by nellys-simu       #+#    #+#             */
-/*   Updated: 2025/11/17 01:57:05 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/11/17 04:26:33 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,10 @@ void	ft_add_back(t_stack **stack, t_stack *new)
 	new->prev = last;
 }
 
-//added as extra measure to make sure its freed so no leaks *hopefully* *stack = NULL
-void	ft_freestack(t_stack **stack)
+long	ft_atol(const char *str)
 {
-	t_stack	*tmp;
-
-	while (*stack)
-	{
-		tmp = (*stack)->next;
-		free(*stack);
-		*stack = tmp;
-	}
-	*stack = NULL;
-}
-
-long	ft_atol(const char *str) //just modified atoi to handle long numbers
-{
-	int	i;
-	int	sign;
+	int		i;
+	int		sign;
 	long	nb;
 
 	nb = 0;
@@ -82,9 +68,12 @@ long	ft_atol(const char *str) //just modified atoi to handle long numbers
 	}
 	return (sign * nb);
 }
+
 int	check_duplicate(t_stack *check, int var)
 {
-	t_stack *temp = check;
+	t_stack	*temp;
+
+	temp = check;
 	while (temp)
 	{
 		if (temp -> value == var)
@@ -93,61 +82,8 @@ int	check_duplicate(t_stack *check, int var)
 	}
 	return (1);
 }
-//https://www.geeksforgeeks.org/dsa/program-check-array-sorted-not-iterative-recursive/
 
-int	is_sorted(char *array, int size)
-{
-	int	i;
-
-	if (!array || size <= 1)
-		return (0);
-	i = 1;
-	while (i < size)
-	{
-		if (array[i - 1] > array[i])
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-/*parse into array, sort array, save indexes used bubble sort*/
-void indexing(t_stack *a)
-{
-    int size = stack_size(a);
-    int *array = malloc(sizeof(int) * size);
-    t_stack *tmp = a;
-
-    // copy values
-    for (int i = 0; tmp; i++, tmp = tmp->next)
-        array[i] = tmp->value;
-
-    // bubble sort
-    for (int i = 0; i < size - 1; i++)
-        for (int j = 0; j < size - i - 1; j++)
-            if (array[j] > array[j + 1])
-            {
-                int t = array[j];
-                array[j] = array[j + 1];
-                array[j + 1] = t;
-            }
-
-    // assign indexes
-    tmp = a;
-    while (tmp)
-    {
-        int i = 0;
-        while (i < size && array[i] != tmp->value)
-            i++;
-        tmp->index = i;
-        tmp = tmp->next;
-    }
-
-    free(array);
-}
-
-
-t_stack *parse_stack(char **argv)
+t_stack	*parse_stack(char **argv)
 {
 	t_stack	*a;
 	long	value;

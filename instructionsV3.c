@@ -1,44 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instructionsV2.c                                   :+:      :+:    :+:   */
+/*   instructionsV3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/14 14:56:28 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/11/17 04:27:41 by mayahiao         ###   ########.fr       */
+/*   Created: 2025/11/17 04:24:06 by mayahiao          #+#    #+#             */
+/*   Updated: 2025/11/17 04:47:42 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack **a)
+void	rb(t_stack **b)
 {
-	swap(a);
-	ft_putstr_fd("sa\n", 1);
+	rotate(b);
+	ft_putstr_fd("rb\n", 1);
 }
 
-void	sb(t_stack **b)
+void	rr(t_stack **a, t_stack **b)
 {
-	swap(b);
-	ft_putstr_fd("sb\n", 1);
+	rotate(a);
+	rotate(b);
+	ft_putstr_fd("rr\n", 1);
 }
 
-void	ss(t_stack **a, t_stack **b)
+void	rra(t_stack **a)
 {
-	swap(a);
-	swap(b);
-	ft_putstr_fd("ss\n", 1);
+	rev_rotate(a);
+	ft_putstr_fd("rra\n", 1);
 }
 
-void	pa(t_stack **a, t_stack **b)
+void	rrb(t_stack **b)
 {
-	push(b, a);
-	ft_putstr_fd("pa\n", 1);
+	rev_rotate(b);
+	ft_putstr_fd("rrb\n", 1);
 }
 
-void	pb(t_stack **a, t_stack **b)
+void	rrr(t_stack **a, t_stack **b)
 {
-	push(a, b);
-	ft_putstr_fd("pb\n", 1);
+	rev_rotate(a);
+	rev_rotate(b);
+	ft_putstr_fd("rrr\n", 1);
 }

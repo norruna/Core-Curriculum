@@ -1,44 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instructionsV2.c                                   :+:      :+:    :+:   */
+/*   misc2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/14 14:56:28 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/11/17 04:27:41 by mayahiao         ###   ########.fr       */
+/*   Created: 2025/11/17 04:44:57 by mayahiao          #+#    #+#             */
+/*   Updated: 2025/11/17 05:01:23 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack **a)
+void	ft_free(char **result)
 {
-	swap(a);
-	ft_putstr_fd("sa\n", 1);
+	int	i;
+
+	i = 0;
+	while (result[i] != NULL)
+	{
+		free(result[i]);
+		i++;
+	}
+	free(result);
 }
 
-void	sb(t_stack **b)
+int	stack_size(t_stack *a)
 {
-	swap(b);
-	ft_putstr_fd("sb\n", 1);
-}
+	int	size;
 
-void	ss(t_stack **a, t_stack **b)
-{
-	swap(a);
-	swap(b);
-	ft_putstr_fd("ss\n", 1);
-}
-
-void	pa(t_stack **a, t_stack **b)
-{
-	push(b, a);
-	ft_putstr_fd("pa\n", 1);
-}
-
-void	pb(t_stack **a, t_stack **b)
-{
-	push(a, b);
-	ft_putstr_fd("pb\n", 1);
+	size = 0;
+	while (a)
+	{
+		size++;
+		a = a->next;
+	}
+	return (size);
 }
