@@ -1,0 +1,415 @@
+c3a1c4% ARG="$(shuf -i 0-1000 -n 500 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG    
+OK
+c3a1c4% ARG="$(shuf -i 0-1000 -n 500 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+OK
+c3a1c4% ARG="$(shuf -i 0-1000 -n 500 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+OK
+c3a1c4% ARG="$(shuf -i 0-1000 -n 500 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+OK
+c3a1c4% ARG="$(shuf -i 0-1000 -n 500 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+OK
+c3a1c4% ARG="$(shuf -i 0-1000 -n 500 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+OK
+c3a1c4% ARG="$(shuf -i 0-1000 -n 500 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+OK
+c3a1c4% ARG="$(shuf -i 0-1000 -n 500 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+OK
+c3a1c4% ARG="$(shuf -i 0-1000 -n 500 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+OK
+c3a1c4% ARG="$(shuf -i 0-1000 -n 500 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+OK
+c3a1c4% ARG="$(shuf -i 0-1000 -n 500 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+OK
+c3a1c4% ARG="$(shuf -i 0-1000 -n 500 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+OK
+c3a1c4% ARG="$(shuf -i 0-1000 -n 500 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+OK
+c3a1c4% 
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5005 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+OK
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5005 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+^[[A
+^[[A
+^[[AOK
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5005 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+OK
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5005 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+^[[A
+OK
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5005 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+^[[A
+OK
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5005 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+^[[AOK
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5005 | paste -sd' ')"; ./push_swap $ARG | ./checker_linux $ARG
+OK
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5005 | paste -sd' ')"; ./push_swap $ARG | wc -l               
+^[[D100296
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+0
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+2
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+2
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+2
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+2
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+2
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+2
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+0
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+2
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+2
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+2
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+0
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+0
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+2
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+0
+c3a1c4% ARG="$(shuf -i 0-10000 -n 3 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+9
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+6
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+5
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+6
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+8
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+6
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+5
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+5
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+7
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+6
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+6
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+7
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+6
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+0
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+6
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+7
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+9
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+9
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+7
+c3a1c4% ARG="$(shuf -i 0-10000 -n 5 | paste -sd' ')"; ./push_swap $ARG | wc -l
+5
+c3a1c4% ARG="$(shuf -i 0-10000 -n 100 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1084
+c3a1c4% ARG="$(shuf -i 0-10000 -n 100 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1084
+c3a1c4% ARG="$(shuf -i 0-10000 -n 100 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1084
+c3a1c4% ARG="$(shuf -i 0-10000 -n 100 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1084
+c3a1c4% ARG="$(shuf -i 0-10000 -n 100 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1084
+c3a1c4% ARG="$(shuf -i 0-10000 -n 100 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1084
+c3a1c4% ARG="$(shuf -i 0-10000 -n 100 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1084
+c3a1c4% ARG="$(shuf -i 0-10000 -n 100 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1084
+c3a1c4% ARG="$(shuf -i 0-10000 -n 100 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1084
+c3a1c4% ARG="$(shuf -i 0-10000 -n 100 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1084
+c3a1c4% ARG="$(shuf -i 0-10000 -n 100 | paste -sd' ')"; ./push_swap $ARG | wc -l
+1084
+c3a1c4% ARG="$(shuf -i 0-10000 -n 500 | paste -sd' ')"; ./push_swap $ARG | wc -l
+6784
+c3a1c4% ARG="$(shuf -i 0-10000 -n 500 | paste -sd' ')"; ./push_swap $ARG | wc -l
+6784
+c3a1c4% ARG="$(shuf -i 0-10000 -n 500 | paste -sd' ')"; ./push_swap $ARG | wc -l
+6784
+c3a1c4% ARG="$(shuf -i 0-10000 -n 500 | paste -sd' ')"; ./push_swap $ARG | wc -l
+6784
+c3a1c4% ARG="$(shuf -i 0-10000 -n 500 | paste -sd' ')"; ./push_swap $ARG | wc -l
+6784
+c3a1c4% ARG="$(shuf -i 0-10000 -n 500 | paste -sd' ')"; ./push_swap $ARG | wc -l
+6784
+c3a1c4% ARG="$(shuf -i 0-10000 -n 500 | paste -sd' ')"; ./push_swap $ARG | wc -l
+6784
+c3a1c4% ls
+checker_linux  instructions.c  instructionsV2.c  Libft	   parse_args.c  push_swap    push_swap.h  push_swap_test_linux.sh  radix.o
+ft_printf      instructions.o  instructionsV2.o  Makefile  parse_args.o  push_swap.c  push_swap.o  radix.c		    traces.txt
+c3a1c4% make
+make -C Libft all
+make[1]: Entering directory '/home/mayahiao/Desktop/Github/Libft'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/home/mayahiao/Desktop/Github/Libft'
+make -C ft_printf all
+make[1]: Entering directory '/home/mayahiao/Desktop/Github/ft_printf'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/home/mayahiao/Desktop/Github/ft_printf'
+make push_swap
+make[1]: Entering directory '/home/mayahiao/Desktop/Github'
+make[1]: 'push_swap' is up to date.
+make[1]: Leaving directory '/home/mayahiao/Desktop/Github'
+c3a1c4% ./push_swap ""
+Error
+c3a1c4% ./push_swap   
+c3a1c4% ./push_swap "    "
+Error
+c3a1c4% ./push_swap "    1"
+Error
+c3a1c4% ./push_swap "1"    
+c3a1c4% ./push_swap " 1"
+Error
+c3a1c4% ./push_swap "1 2 3"
+c3a1c4% ./push_swap "1 2 -3"
+rra
+c3a1c4% ./push_swap "1 2 +3"
+c3a1c4% ./push_swap "3 2 1" 
+sa
+rra
+c3a1c4% ./push_swap "3 2 +1 1"
+Error
+c3a1c4% ./push_swap "3 2 -1 1"
+ra
+ra
+pb
+sa
+ra
+pa
+c3a1c4% ./push_swap "3 2 -1 -1"
+Error
+c3a1c4% ./push_swap "3 2 1 -"  
+Error
+rra
+pb
+sa
+rra
+pa
+c3a1c4% make re              
+rm -f push_swap.o radix.o parse_args.o instructions.o instructionsV2.o 
+make -C Libft clean
+make[1]: Entering directory '/home/mayahiao/Desktop/Github/Libft'
+rm -f ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_memchr.o ft_memcmp.o ft_strlen.o ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_toupper.o ft_tolower.o ft_strchr.o ft_strrchr.o ft_strncmp.o ft_strlcpy.o ft_strlcat.o ft_strnstr.o ft_atoi.o ft_calloc.o ft_strdup.o ft_substr.o ft_strjoin.o ft_strtrim.o ft_split.o ft_itoa.o ft_strmapi.o ft_striteri.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_lstnew_bonus.o ft_lstadd_front_bonus.o ft_lstsize_bonus.o ft_lstlast_bonus.o ft_lstadd_back_bonus.o ft_lstdelone_bonus.o ft_lstclear_bonus.o ft_lstiter_bonus.o ft_lstmap_bonus.o
+make[1]: Leaving directory '/home/mayahiao/Desktop/Github/Libft'
+make -C ft_printf clean
+make[1]: Entering directory '/home/mayahiao/Desktop/Github/ft_printf'
+rm -f ft_printf.o ft_printf_utils.o 
+make[1]: Leaving directory '/home/mayahiao/Desktop/Github/ft_printf'
+rm -f push_swap
+make -C Libft fclean
+make[1]: Entering directory '/home/mayahiao/Desktop/Github/Libft'
+rm -f ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_memchr.o ft_memcmp.o ft_strlen.o ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_toupper.o ft_tolower.o ft_strchr.o ft_strrchr.o ft_strncmp.o ft_strlcpy.o ft_strlcat.o ft_strnstr.o ft_atoi.o ft_calloc.o ft_strdup.o ft_substr.o ft_strjoin.o ft_strtrim.o ft_split.o ft_itoa.o ft_strmapi.o ft_striteri.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_lstnew_bonus.o ft_lstadd_front_bonus.o ft_lstsize_bonus.o ft_lstlast_bonus.o ft_lstadd_back_bonus.o ft_lstdelone_bonus.o ft_lstclear_bonus.o ft_lstiter_bonus.o ft_lstmap_bonus.o
+rm -f libft.a
+make[1]: Leaving directory '/home/mayahiao/Desktop/Github/Libft'
+make -C ft_printf fclean
+make[1]: Entering directory '/home/mayahiao/Desktop/Github/ft_printf'
+rm -f ft_printf.o ft_printf_utils.o 
+rm -f libftprintf.a
+make[1]: Leaving directory '/home/mayahiao/Desktop/Github/ft_printf'
+make -C Libft all
+make[1]: Entering directory '/home/mayahiao/Desktop/Github/Libft'
+cc -Wall -Wextra -Werror -c ft_memset.c -o ft_memset.o
+cc -Wall -Wextra -Werror -c ft_bzero.c -o ft_bzero.o
+cc -Wall -Wextra -Werror -c ft_memcpy.c -o ft_memcpy.o
+cc -Wall -Wextra -Werror -c ft_memmove.c -o ft_memmove.o
+cc -Wall -Wextra -Werror -c ft_memchr.c -o ft_memchr.o
+cc -Wall -Wextra -Werror -c ft_memcmp.c -o ft_memcmp.o
+cc -Wall -Wextra -Werror -c ft_strlen.c -o ft_strlen.o
+cc -Wall -Wextra -Werror -c ft_isalpha.c -o ft_isalpha.o
+cc -Wall -Wextra -Werror -c ft_isdigit.c -o ft_isdigit.o
+cc -Wall -Wextra -Werror -c ft_isalnum.c -o ft_isalnum.o
+cc -Wall -Wextra -Werror -c ft_isascii.c -o ft_isascii.o
+cc -Wall -Wextra -Werror -c ft_isprint.c -o ft_isprint.o
+cc -Wall -Wextra -Werror -c ft_toupper.c -o ft_toupper.o
+cc -Wall -Wextra -Werror -c ft_tolower.c -o ft_tolower.o
+cc -Wall -Wextra -Werror -c ft_strchr.c -o ft_strchr.o
+cc -Wall -Wextra -Werror -c ft_strrchr.c -o ft_strrchr.o
+cc -Wall -Wextra -Werror -c ft_strncmp.c -o ft_strncmp.o
+cc -Wall -Wextra -Werror -c ft_strlcpy.c -o ft_strlcpy.o
+cc -Wall -Wextra -Werror -c ft_strlcat.c -o ft_strlcat.o
+cc -Wall -Wextra -Werror -c ft_strnstr.c -o ft_strnstr.o
+cc -Wall -Wextra -Werror -c ft_atoi.c -o ft_atoi.o
+cc -Wall -Wextra -Werror -c ft_calloc.c -o ft_calloc.o
+cc -Wall -Wextra -Werror -c ft_strdup.c -o ft_strdup.o
+cc -Wall -Wextra -Werror -c ft_substr.c -o ft_substr.o
+cc -Wall -Wextra -Werror -c ft_strjoin.c -o ft_strjoin.o
+cc -Wall -Wextra -Werror -c ft_strtrim.c -o ft_strtrim.o
+cc -Wall -Wextra -Werror -c ft_split.c -o ft_split.o
+cc -Wall -Wextra -Werror -c ft_itoa.c -o ft_itoa.o
+cc -Wall -Wextra -Werror -c ft_strmapi.c -o ft_strmapi.o
+cc -Wall -Wextra -Werror -c ft_striteri.c -o ft_striteri.o
+cc -Wall -Wextra -Werror -c ft_putchar_fd.c -o ft_putchar_fd.o
+cc -Wall -Wextra -Werror -c ft_putstr_fd.c -o ft_putstr_fd.o
+cc -Wall -Wextra -Werror -c ft_putendl_fd.c -o ft_putendl_fd.o
+cc -Wall -Wextra -Werror -c ft_putnbr_fd.c -o ft_putnbr_fd.o
+ar rcs libft.a ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_memchr.o ft_memcmp.o ft_strlen.o ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_toupper.o ft_tolower.o ft_strchr.o ft_strrchr.o ft_strncmp.o ft_strlcpy.o ft_strlcat.o ft_strnstr.o ft_atoi.o ft_calloc.o ft_strdup.o ft_substr.o ft_strjoin.o ft_strtrim.o ft_split.o ft_itoa.o ft_strmapi.o ft_striteri.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o
+make[1]: Leaving directory '/home/mayahiao/Desktop/Github/Libft'
+make -C ft_printf all
+make[1]: Entering directory '/home/mayahiao/Desktop/Github/ft_printf'
+cc -Wall -Wextra -Werror -c ft_printf.c -o ft_printf.o
+cc -Wall -Wextra -Werror -c ft_printf_utils.c -o ft_printf_utils.o
+ar rcs libftprintf.a ft_printf.o ft_printf_utils.o
+make[1]: Leaving directory '/home/mayahiao/Desktop/Github/ft_printf'
+make push_swap
+make[1]: Entering directory '/home/mayahiao/Desktop/Github'
+cc -Wall -Wextra -Werror -c push_swap.c -o push_swap.o
+cc -Wall -Wextra -Werror -c radix.c -o radix.o
+cc -Wall -Wextra -Werror -c parse_args.c -o parse_args.o
+cc -Wall -Wextra -Werror -c instructions.c -o instructions.o
+cc -Wall -Wextra -Werror -c instructionsV2.c -o instructionsV2.o
+cc -Wall -Wextra -Werror push_swap.o radix.o parse_args.o instructions.o instructionsV2.o Libft/libft.a ft_printf/libftprintf.a -o push_swap
+make[1]: Leaving directory '/home/mayahiao/Desktop/Github'
+c3a1c4% ./push_swap "3 2 1 -"
+Error
+rra
+pb
+sa
+rra
+pa
+0123
+c3a1c4% ./push_swap "3 2 1 -0"
+rra
+pb
+sa
+rra
+pa
+0123
+c3a1c4% ./push_swap "3 2 1 +0"
+rra
+pb
+sa
+rra
+pa
+0123
+c3a1c4% ./push_swap "3 2000000000 1 0"
+rra
+pb
+rra
+pa
+0132000000000
+c3a1c4% ./push_swap "3 20000000000000 1 0"
+Error
+
+c3a1c4% ./push_swap "3 20000000000000 1 0"
+Error
+
+c3a1c4% ./push_swap "3 2 1 -00000000000000000000000000000000001"
+rra
+pb
+sa
+rra
+pa
+-1123
+c3a1c4% ./push_swap "3 2 1 +00000000000000000000000000000000001"
+Error
+
+c3a1c4% ./push_swap "3 2 1 +000000001"                          
+Error
+
+c3a1c4% ./push_swap "3 2 1 +1"        
+Error
+
+c3a1c4% ./push_swap "3 2 1 +00000000000000000000000000000000009"
+ra
+ra
+pb
+sa
+rra
+pa
+1239
+c3a1c4% ./push_swap "3 2 1 +"                                   
+Error
+rra
+pb
+sa
+rra
+pa
+0123
+c3a1c4% ./push_swap "3 2 1 -"
+Error
+rra
+pb
+sa
+rra
+pa
+0123
+c3a1c4% ./push_swap "3 20000000000000 1 0"                      
+Error
+
+c3a1c4% ./push_swap 0000000000000000000000000000009 2
+sa
+29
+c3a1c4% ./push_swap 0000000000000000000000000000009 223213
+9223213
+c3a1c4% ./push_swap 0000000000000000000000000000009 223213 0
+rra
+09223213
+c3a1c4% ./push_swap 0000000000000000000000000000009 223213 0 +0
+Error
+
+c3a1c4% ./push_swap 0000000000000000000000000000009 223213 0 +0 -0
+Error
+
+c3a1c4% ./push_swap 0000000000000000000000000000009 223213 0 -0   
+Error
+
+c3a1c4% ./push_swap 0000000000000000000000000000009 223213 0 +0   
+Error
+
+c3a1c4% ./push_swap 0000000000000000000000000000009 223213  +0 
+rra
+09223213
+c3a1c4% ./push_swap 0000000000000000000000000000009 223213  -0
+rra
+09223213
+c3a1c4% ./push_swap 0000000000000000000000000000009 223213  -0 ""
+Error
+c3a1c4% ./push_swap 0000000000000000000000000000009 223213  -0 "1 2 3"
+Error
+
+c3a1c4%     
