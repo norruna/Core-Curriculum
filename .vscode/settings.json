@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+      "push_swap.h": "c",
+      "array": "c",
+      "random": "c",
+      "libft.h": "c"
+    }
+     ,"[c]": {
+    "editor.defaultFormatter": "keyhr.42-c-format"
+  }
+}
