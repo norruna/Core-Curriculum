@@ -6,12 +6,12 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 04:22:10 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/11/17 04:45:18 by mayahiao         ###   ########.fr       */
+/*   Updated: 2025/11/20 22:14:24 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+#include <stdio.h>
 void	ft_freestack(t_stack **stack)
 {
 	t_stack	*tmp;
@@ -93,6 +93,7 @@ int	arg_check(char **str)
 		r = str_check(str[i]);
 		if (r == 0)
 		{
+			printf("test1");
 			ft_putstr_fd("Error\n", 2);
 			return (0);
 		}
