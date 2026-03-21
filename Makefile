@@ -14,33 +14,29 @@
 NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-AR = ar rcs
 RM = rm -f
 
 SRC_FILES = get_next_line get_next_line_utils so_long_home
-
 SRCS = $(addsuffix .c, $(SRC_FILES))
-
 OBJS = $(SRCS:.c=.o)
 
-all: Libft/libft.a $(NAME)
+all: minilibx-linux/libmlx.a $(NAME)
 
-$(NAME): $(OBJS) Libft/libft.a
-	$(CC) $(CFLAGS) $(OBJS) Libft/libft.a -o $(NAME)
+$(NAME): $(OBJS) minilibx-linux/libmlx.a
+	$(CC) $(CFLAGS) $(OBJS) -Lminilibx-linux -lmlx -lX11 -lXext -o $(NAME)
 
-Libft/libft.a:
-	$(MAKE) -C Libft all
+minilibx-linux/libmlx.a:
+	$(MAKE) -C minilibx-linux
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS)
-	$(MAKE) -C Libft clean
+	$(MAKE) -C minilibx-linux clean
 
 fclean: clean
 	$(RM) $(NAME)
-	$(MAKE) -C Libft fclean
 
 re: fclean all
 
