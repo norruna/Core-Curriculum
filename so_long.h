@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:45:17 by mayahiao          #+#    #+#             */
-/*   Updated: 2026/03/23 15:48:00 by mayahiao         ###   ########.fr       */
+/*   Updated: 2026/03/24 22:25:34 by nellys-simu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,14 @@ typedef struct s_position
 }	t_position;
 
 /* struct to handle both connection and window pointers */
-typedef struct s_mlx_param
-{
-	void	*ptr;
-	void	*window;
-	void	*img;
-}	t_mlx_param;
-
 typedef struct s_game
 {
 	void	*ptr;
 	void	*window;
 	void	*img;
 	char	**map;
+	int		rows;
+	int		cols;
 	int		player_x;
 	int		player_y;
 	int		moves;
@@ -63,7 +58,15 @@ typedef struct s_flood
 	int	**visited;
 	int	rows;
 	int	cols;
+	int	py;
+	int	px;
 }	t_flood;
+
+typedef struct s_pos
+{
+	int	x;
+	int	y;
+}	t_pos;
 
 /*get_next_line */
 char	*get_next_line(int fd);
@@ -78,12 +81,12 @@ char	*ft_strdup(const char *s);
 
 /*is_map_accessible*/
 void	flood_fill(char **map, t_flood *f, int y, int x);
-int		is_reachable(char **map, int rows, int cols, int py, int px);
+int		is_reachable(char **map, t_flood *f);
 
 /*is_map_valid*/
 void	count_collectibles(t_game *game);
 int		count_map_lines(char *file);
-int		count_P_C_E(char *file);
+int		count_p_c_e(char *file);
 int		is_rectangular(char *file);
 int		is_surrounded_by_walls(char *file);
 int		is_valid(char *file);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 15:27:40 by mayahiao          #+#    #+#             */
-/*   Updated: 2026/03/23 16:25:55 by mayahiao         ###   ########.fr       */
+/*   Updated: 2026/03/24 22:26:46 by nellys-simu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,26 @@ void	find_player(t_game *game)
 	}
 }
 
+static int	handle_target(t_game *game, char target)
+{
+	if (target == '1')
+		return (0);
+	if (target == 'E' && game->collected < game->collectibles)
+		return (0);
+	if (target == 'E' && game->collected == game->collectibles)
+	{
+		printf("You win! Moves: %d\n", game->moves + 1);
+		mlx_loop_end(game->ptr);
+		return (0);
+	}
+	if (target == 'C')
+	{
+		game->collected++;
+		game->map[game->player_y][game->player_x] = '0';
+	}
+	return (1);
+}
+
 void	move_player(t_game *game, int dx, int dy)
 {
 	int		new_x;
@@ -43,21 +63,8 @@ void	move_player(t_game *game, int dx, int dy)
 	new_x = game->player_x + dx;
 	new_y = game->player_y + dy;
 	target = game->map[new_y][new_x];
-	if (target == '1')
+	if (!handle_target(game, target))
 		return ;
-	if (target == 'E' && game->collected < game->collectibles)
-		return ;
-	if (target == 'E' && game->collected == game->collectibles)
-	{
-		printf("You win! Moves: %d\n", game->moves + 1);
-		mlx_loop_end(game->ptr);
-		return ;
-	}
-	if (target == 'C')
-	{
-		game->collected++;
-		game->map[new_y][new_x] = '0';
-	}
 	game->map[game->player_y][game->player_x] = '0';
 	game->map[new_y][new_x] = 'P';
 	game->player_x = new_x;
