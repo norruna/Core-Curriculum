@@ -6,7 +6,7 @@
 /*   By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 15:27:40 by mayahiao          #+#    #+#             */
-/*   Updated: 2026/03/24 22:26:46 by nellys-simu      ###   ########.fr       */
+/*   Updated: 2026/03/25 00:28:26 by nellys-simu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	handle_target(t_game *game, char target)
 		return (0);
 	if (target == 'E' && game->collected == game->collectibles)
 	{
-		printf("You win! Moves: %d\n", game->moves + 1);
+		ft_printf("You win! Moves: %d\n", game->moves + 1);
 		mlx_loop_end(game->ptr);
 		return (0);
 	}
@@ -70,7 +70,7 @@ void	move_player(t_game *game, int dx, int dy)
 	game->player_x = new_x;
 	game->player_y = new_y;
 	game->moves++;
-	printf("Moves: %d\n", game->moves);
+	ft_printf("Moves: %d\n", game->moves);
 	draw_map(game->map, game);
 }
 

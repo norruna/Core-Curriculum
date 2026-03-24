@@ -6,7 +6,7 @@
 /*   By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 22:11:18 by nellys-simu       #+#    #+#             */
-/*   Updated: 2026/03/24 22:21:56 by nellys-simu      ###   ########.fr       */
+/*   Updated: 2026/03/25 00:27:52 by nellys-simu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ int	is_valid(char *file)
 {
 	if (!is_rectangular(file))
 	{
-		printf("Map is not rectangular\n");
+		ft_printf("Map is not rectangular\n");
 		return (0);
 	}
 	if (!is_surrounded_by_walls(file))
 	{
-		printf("Map is not surrounded by walls\n");
+		ft_printf("Map is not surrounded by walls\n");
 		return (0);
 	}
 	if (!count_p_c_e(file))
 	{
-		printf("Map doesnt have enough exits, players or collectibles\n");
+		ft_printf("Map doesnt have enough exits, players or collectibles\n");
 		return (0);
 	}
 	return (1);

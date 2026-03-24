@@ -6,7 +6,7 @@
 /*   By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:45:17 by mayahiao          #+#    #+#             */
-/*   Updated: 2026/03/24 22:25:34 by nellys-simu      ###   ########.fr       */
+/*   Updated: 2026/03/25 00:27:18 by nellys-simu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <string.h>
+# include "Libft/libft.h"
+# include "ft_printf/ft_printf.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 500
