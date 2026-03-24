@@ -6,7 +6,7 @@
 #    By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/11 13:15:34 by mayahiao          #+#    #+#              #
-#    Updated: 2025/11/17 04:54:56 by mayahiao         ###   ########.fr        #
+#    Updated: 2026/03/23 15:31:32 by mayahiao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-SRC_FILES = get_next_line get_next_line_utils so_long_home
+SRC_FILES = get_next_line get_next_line_utils is_map_accessible is_map_valid main map_parsing_drawing movement window_management
 SRCS = $(addsuffix .c, $(SRC_FILES))
 OBJS = $(SRCS:.c=.o)
 
