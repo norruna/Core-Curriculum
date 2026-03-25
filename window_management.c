@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 15:28:32 by mayahiao          #+#    #+#             */
-/*   Updated: 2026/03/25 15:58:57 by mayahiao         ###   ########.fr       */
+/*   Updated: 2026/03/25 16:27:53 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ void	init_and_open_window(t_game *game)
 	mlx_key_hook(game->window, (int (*)())key_presses, game);
 	mlx_hook(game->window, 17, 0L, (int (*)())close_after_x, game);
 	mlx_loop(game->ptr);
+	cleanup(game);
 }

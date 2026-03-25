@@ -1,5 +1,0 @@
-gcc so_long_home.c get_next_line.c get_next_line_utils.c -Lminilibx-linux -lmlx -o so_long -lX11 -lXext
-
-
-valgrind --leak-check=full --suppressions=mlx.supp ./so_long
-

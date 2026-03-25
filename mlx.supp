@@ -1,7 +1,0 @@
-{
-   mlx_init_internal_leak
-   Memcheck:Leak
-   match-leak-kinds: definite
-   fun:malloc
-   fun:mlx_init
-}
