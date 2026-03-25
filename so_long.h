@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:45:17 by mayahiao          #+#    #+#             */
-/*   Updated: 2026/03/25 15:56:01 by mayahiao         ###   ########.fr       */
+/*   Updated: 2026/03/25 18:11:02 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*ft_strdup(const char *s);
 
 /*is_map_accessible*/
 void	flood_fill(char **map, t_flood *f, int y, int x);
-int		is_reachable(char **map, t_flood *f);
+int		is_reachable(char **map, t_flood *f, t_game *game);
 
 /*is_map_valid*/
 void	count_collectibles(t_game *game);
@@ -107,6 +107,5 @@ int		key_presses(int keysym, void *param);
 /*window_management*/
 int		close_after_x(t_game *game);
 void	init_and_open_window(t_game *game);
-
-void cleanup(t_game *game);
+void	cleanup(t_game *game);
 #endif

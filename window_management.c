@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 15:28:32 by mayahiao          #+#    #+#             */
-/*   Updated: 2026/03/25 16:36:25 by mayahiao         ###   ########.fr       */
+/*   Updated: 2026/03/25 18:11:34 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	check_map(t_game *game)
 	f.cols = game->cols;
 	f.py = game->player_y;
 	f.px = game->player_x;
-	if (!is_reachable(game->map, &f))
+	if (!is_reachable(game->map, &f, game))
 	{
 		free_map(game->map, game->rows);
 		game->map = NULL;
@@ -72,9 +72,12 @@ void	init_and_open_window(t_game *game)
 	if (!init_map(game))
 		return ;
 	if (!check_map(game))
+	{
+		ft_printf("Error\n");
 		return (cleanup(game));
+	}
 	if (!init_mlx(game))
-		return(cleanup(game));
+		return (cleanup(game));
 	mlx_put_image_to_window(game->ptr, game->window, game->img, 0, 0);
 	draw_map(game->map, game);
 	mlx_key_hook(game->window, (int (*)())key_presses, game);

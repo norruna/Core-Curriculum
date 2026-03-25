@@ -11,4 +11,4 @@ Instructions :
 
 Resources : 
 
-
+Peers, Gitbook, Chatgpt, Claude AI. 

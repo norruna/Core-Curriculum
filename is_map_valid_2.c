@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 22:11:18 by nellys-simu       #+#    #+#             */
-/*   Updated: 2026/03/25 15:04:08 by mayahiao         ###   ########.fr       */
+/*   Updated: 2026/03/25 18:08:04 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int	valid_chars(char *file)
 		while (line[i] && i < ft_strlen(line) - 1)
 		{
 			if (line[i] != 'P' && line[i] != 'C' 
-					&& line[i] != 'E' && line[i] != '0' && line[i] != '1')
-						return (free(line), close(fd), get_next_line(-1), 0);
+				&& line[i] != 'E' && line[i] != '0' && line[i] != '1')
+				return (free(line), close(fd), get_next_line(-1), 0);
 			i++;
 		}
 		free(line);
@@ -84,6 +84,14 @@ int	valid_chars(char *file)
 
 int	is_valid(char *file)
 {
+	int	fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+		printf("Error: Could not open file\n");
+		return (0);
+	}
 	if (!is_rectangular(file))
 	{
 		ft_printf("Map is not rectangular\n");
@@ -96,13 +104,9 @@ int	is_valid(char *file)
 	}
 	if (!count_p_c_e(file))
 	{
-		ft_printf("Map doesnt have enough exits, players or collectibles\n");
-		return (0);
+		return (ft_printf("Not enough exits, players or collectibles\n"), 0);
 	}
 	if (!valid_chars(file))
-	{
-		ft_printf("invalid characters\n");
-		return (0);
-	}
+		return (ft_printf("invalid characters\n"), 0);
 	return (1);
 }
