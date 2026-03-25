@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+        */
+/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:45:17 by mayahiao          #+#    #+#             */
-/*   Updated: 2026/03/25 00:27:18 by nellys-simu      ###   ########.fr       */
+/*   Updated: 2026/03/25 15:56:01 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int		count_p_c_e(char *file);
 int		is_rectangular(char *file);
 int		is_surrounded_by_walls(char *file);
 int		is_valid(char *file);
+int		valid_chars(char *file);
 
 /*map_parsing_drawing*/
 void	free_map(char **map, int i);
@@ -104,7 +105,8 @@ void	move_player(t_game *game, int dx, int dy);
 int		key_presses(int keysym, void *param);
 
 /*window_management*/
-int		close_after_x(void *param);
+int		close_after_x(t_game *game);
 void	init_and_open_window(t_game *game);
 
+void cleanup(t_game *game);
 #endif

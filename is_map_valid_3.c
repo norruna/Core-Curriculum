@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_map_valid_3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+        */
+/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 22:13:18 by nellys-simu       #+#    #+#             */
-/*   Updated: 2026/03/24 22:13:29 by nellys-simu      ###   ########.fr       */
+/*   Updated: 2026/03/25 15:14:02 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	check_middle(int fd, int count)
 		while (line[len] && line[len] != '\n')
 			len++;
 		if (len == 0 || line[0] != '1' || line[len - 1] != '1')
-			return (free(line), close(fd), 0);
+			return (free(line), close(fd), get_next_line(-1), 0);
 		free(line);
 		i++;
 	}
@@ -68,7 +68,7 @@ static int	check_first_last(int fd, int count)
 		if (!line)
 			return (close(fd), 0);
 		if (!is_all_walls(line))
-			return (free(line), close(fd), 0);
+			return (free(line), close(fd), get_next_line(-1), 0);
 		free(line);
 	}
 	return (1);

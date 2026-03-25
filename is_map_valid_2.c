@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_map_valid_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+        */
+/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 22:11:18 by nellys-simu       #+#    #+#             */
-/*   Updated: 2026/03/25 00:27:52 by nellys-simu      ###   ########.fr       */
+/*   Updated: 2026/03/25 15:04:08 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,35 @@ int	count_map_lines(char *file)
 	return (count);
 }
 
+int	valid_chars(char *file)
+{
+	int		i;
+	char	*line;
+	int		fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (0);
+	line = get_next_line(fd);
+	if (!line)
+		return (close(fd), 0);
+	while (line != NULL)
+	{
+		i = 0;
+		while (line[i] && i < ft_strlen(line) - 1)
+		{
+			if (line[i] != 'P' && line[i] != 'C' 
+					&& line[i] != 'E' && line[i] != '0' && line[i] != '1')
+						return (free(line), close(fd), get_next_line(-1), 0);
+			i++;
+		}
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (1);
+}
+
 int	is_valid(char *file)
 {
 	if (!is_rectangular(file))
@@ -68,6 +97,11 @@ int	is_valid(char *file)
 	if (!count_p_c_e(file))
 	{
 		ft_printf("Map doesnt have enough exits, players or collectibles\n");
+		return (0);
+	}
+	if (!valid_chars(file))
+	{
+		ft_printf("invalid characters\n");
 		return (0);
 	}
 	return (1);

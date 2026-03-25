@@ -3,24 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   window_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+        */
+/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 15:28:32 by mayahiao          #+#    #+#             */
-/*   Updated: 2026/03/24 21:59:40 by nellys-simu      ###   ########.fr       */
+/*   Updated: 2026/03/25 15:58:57 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /* close window after pressing X button */
-int	close_after_x(void *param)
+int	close_after_x(t_game *game)
 {
-	t_game	*game;
-
-	game = (t_game *)param;
-	if (game && game->ptr)
-		mlx_loop_end(game->ptr);
-	return (0);
+	cleanup(game);
+	exit(0);
 }
 
 /* init and open window, register hooks once */
@@ -75,15 +71,12 @@ void	init_and_open_window(t_game *game)
 	if (!init_map(game))
 		return ;
 	if (!check_map(game))
-		return ;
+		return (cleanup(game));
 	if (!init_mlx(game))
-		return ;
+		return(cleanup(game));
 	mlx_put_image_to_window(game->ptr, game->window, game->img, 0, 0);
 	draw_map(game->map, game);
 	mlx_key_hook(game->window, (int (*)())key_presses, game);
 	mlx_hook(game->window, 17, 0L, (int (*)())close_after_x, game);
 	mlx_loop(game->ptr);
-	mlx_destroy_image(game->ptr, game->img);
-	mlx_destroy_window(game->ptr, game->window);
-	free_map(game->map, game->rows);
 }

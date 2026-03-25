@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_map_valid.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+        */
+/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 15:24:52 by mayahiao          #+#    #+#             */
-/*   Updated: 2026/03/24 22:15:04 by nellys-simu      ###   ########.fr       */
+/*   Updated: 2026/03/25 15:15:29 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int	check_lines(int fd, size_t first_len, int count)
 		if (!line)
 			return (close(fd), 0);
 		if (line_len(line) != first_len)
-			return (free(line), close(fd), 0);
+			return (free(line), close(fd), get_next_line(-1), 0);
 		free(line);
 		i++;
 	}

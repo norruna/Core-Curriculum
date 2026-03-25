@@ -3,24 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing_drawing.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+        */
+/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 15:25:48 by mayahiao          #+#    #+#             */
-/*   Updated: 2026/03/24 22:18:26 by nellys-simu      ###   ########.fr       */
+/*   Updated: 2026/03/25 16:10:12 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_map(char **map, int i)
+void	free_map(char **map, int rows)
 {
+	int	i;
+
+	i = 0;
 	if (!map)
 		return ;
-	while (i >= 0)
+	while (i < rows)
 	{
-		if (map[i])
-			free(map[i]);
-		i--;
+		free(map[i]);
+		i++;
 	}
 	free(map);
 }
@@ -84,5 +86,12 @@ char	**parse_map(char *file)
 	map = malloc((count + 1) * sizeof(char *));
 	if (!map)
 		return (close(fd), NULL);
-	return (fill_map(fd, map, count));
+	if (!fill_map(fd, map, count))
+	{
+		free_map(map, count);
+		close(fd);
+		return (NULL);
+	}
+	close (fd);
+	return (map);
 }

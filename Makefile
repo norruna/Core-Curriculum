@@ -13,7 +13,7 @@
 #copied from my printf project and adjusted
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror  -Wno-cast-function-type #remove the who before uploading, just to suppress from own pc
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 SRC_FILES = get_next_line get_next_line_utils is_map_accessible is_map_valid is_map_valid_2 is_map_valid_3 main map_parsing_drawing map_parsing_drawing_2 movement window_management ft_printf/ft_printf ft_printf/ft_printf_utils Libft/ft_calloc Libft/ft_bzero Libft/ft_putchar_fd
