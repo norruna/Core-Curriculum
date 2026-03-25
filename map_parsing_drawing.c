@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 15:25:48 by mayahiao          #+#    #+#             */
-/*   Updated: 2026/03/25 16:10:12 by mayahiao         ###   ########.fr       */
+/*   Updated: 2026/03/25 16:32:43 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ static char	**fill_map(int fd, char **map, int count)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			return (free_map(map, i - 1), close(fd), NULL);
+			return (free_map(map, i), close(fd), NULL);
 		map[i] = copy_line(line);
 		free(line);
 		if (!map[i])
-			return (free_map(map, i - 1), close(fd), NULL);
+			return (free_map(map, i), close(fd), NULL);
 		i++;
 	}
 	map[i] = NULL;
@@ -88,7 +88,6 @@ char	**parse_map(char *file)
 		return (close(fd), NULL);
 	if (!fill_map(fd, map, count))
 	{
-		free_map(map, count);
 		close(fd);
 		return (NULL);
 	}

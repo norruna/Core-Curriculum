@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 15:28:32 by mayahiao          #+#    #+#             */
-/*   Updated: 2026/03/25 16:27:53 by mayahiao         ###   ########.fr       */
+/*   Updated: 2026/03/25 16:36:25 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int	check_map(t_game *game)
 	if (!is_reachable(game->map, &f))
 	{
 		free_map(game->map, game->rows);
+		game->map = NULL;
 		return (0);
 	}
 	return (1);
