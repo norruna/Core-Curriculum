@@ -1,5 +1,16 @@
 #include "minishell.h"
 
+//corrects potential strdup leak
+void	ft_free_split(char **result)
+{
+	int	i = 0;
+	while (result[i] != NULL)
+	{
+		free(result[i]);
+		i++;
+	}
+	free(result);
+}
 
 //checking if cd has a valid str attached to it. bit hardcoded cuz doenst handle multiple spaces 
 void cd_path(char *line)
@@ -27,6 +38,7 @@ void cd_path(char *line)
               perror ("couldnt load the pathorino\n");
           
           }
+        ft_free_split(result);
      
 }
 

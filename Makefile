@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    MAKEFILE                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/28 21:24:46 by nellys-simu       #+#    #+#              #
-#    Updated: 2026/03/28 21:24:47 by nellys-simu      ###   ########.fr        #
+#    Updated: 2026/04/18 21:12:23 by nellys-simu      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = minishell
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -lreadline -lncurses
 
-SRC_FILES = run_command main handle_cd handle_signal
+SRC_FILES = run_command main handle_cd handle_signal handle_env
 SRCS = $(addsuffix .c, $(SRC_FILES))
 OBJS = $(SRCS:.c=.o)
 

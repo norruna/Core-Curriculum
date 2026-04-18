@@ -7,12 +7,12 @@ dont forget clearing the history afterwards*/
 void running_minishell(void)
 {
      char *line;
-	signal(SIGINT, handle_sigint);
-	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, handle_sigint); //if ctrlC is pressed
+	signal(SIGQUIT, SIG_IGN); //if CTRL/ is pressed : ignore it (SIG_IGN)
     while (1)
     {
         line = readline("minishell$ ");
-		if (!line) //handles ctrl+D
+		if (!line) //handles ctrl+D since CTRLD is just EOF and not a signal
             break;
 
         if (*line)

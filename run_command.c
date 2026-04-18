@@ -14,6 +14,8 @@ static char	*get_path(char *line)
 		return ("/bin/pwd");
 	if (strcmp(line, "cat") == 0)
 		return ("/bin/cat");
+	if (strcmp(line, "env") == 0)
+		return("/bin/env");
 	return (NULL);
 }
 
@@ -39,18 +41,34 @@ void	run_command(char *line)
         }
 	if (strcmp(line,"cd ..") == 0 || strcmp(line, "cd .") == 0 || strcmp(line, "cd") == 0)
 	{	
-		execute_cd(path);
+		execute_cd(line);
 		return ;
 	}
-	
+	if (line[0] == 'e' && line[1] == 'c' && line[2] == 'h' && line[3] == 'o' && line[4] == 32 && line[5] == '-' && line[6] == 'n' && line[7] == 32)
+	{
+			int i = 8;
+			while (line[i])
+			{
+				write(1,&line[i], 1);
+				i++;
+			}
+			return ;
+	}
 	path = get_path(line);
 	
 	
 	if (!path)
 	{
 		printf("command not found: %s\n", line);
-		return;
+		return ;
 	}
+
+	if (strcmp(path ,"/bin/env") == 0)
+	{
+		handle_env(path);
+		return ;
+	}	
+
 	args[0] = path;
 	args[1] = NULL;
 	pid = fork();

@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:16:42 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/05/19 12:18:41 by mayahiao         ###   ########.fr       */
+/*   Updated: 2026/04/18 18:25:04 by nellys-simu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+void	ft_free(char **result)
+{
+	int	i = 0;
+	while (result[i] != NULL)
+	{
+		free(result[i]);
+		i++;
+	}
+	free(result);
+}
 
 static int	word_length(const char *str, char c)
 {
@@ -113,6 +124,11 @@ char	**ft_split(const char *str, char c)
 		if (str[i])
 		{
 			result[j] = make_word(&str[i], c);
+			if (!result[j])
+			{
+				ft_free(result);
+				return (NULL);
+			}
 			i += word_length(&str[i], c);
 			j++;
 		}
@@ -120,18 +136,9 @@ char	**ft_split(const char *str, char c)
 	result[j] = NULL;
 	return (result);
 }
-/*void	ft_free(char **result)
-{
-	int	i = 0;
-	while (result[i] != NULL)
-	{
-		free(result[i]);
-		i++;
-	}
-	free(result);
-}
 
-#include <stdio.h>
+
+/*#include <stdio.h>
 int	main(void)
 {
 	const char *str = " h  a    rtd ttt drt yd";
