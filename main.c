@@ -4,9 +4,14 @@
 dont forget freeing line inside the loop
 dont forget adding to history
 dont forget clearing the history afterwards*/
-void running_minishell(void)
+
+
+/*had to use argc and argv so i can use envp for env. just casting argc and argv to void to avoid compiler issues*/
+int main(int argc, char **argv, char **envp)
 {
-     char *line;
+    (void)argc;
+    (void)argv;
+    char *line;
 	signal(SIGINT, handle_sigint); //if ctrlC is pressed
 	signal(SIGQUIT, SIG_IGN); //if CTRL/ is pressed : ignore it (SIG_IGN)
     while (1)
@@ -18,15 +23,10 @@ void running_minishell(void)
         if (*line)
             add_history(line);
         if (*line)
-	    run_command(line);
+	    run_command(line, envp);
         free(line);
     }
 
     rl_clear_history();
-}
-
-int main(void)
-{
-   running_minishell();
     return (0);
 }

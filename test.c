@@ -17,12 +17,23 @@
 } */
 
 
-int main(void)
+int main(int argc, char **argv, char **envp)
 {
-    0 && printf("0 && printf()\n") || printf("0 && printf() || printf()\n");;
-    1 && printf("1 && printf()\n") || printf("1 && printf() || printf()\n");;
-
-    0 || printf("0 || printf()\n");
-    1 || printf("1 || printf()\n");
+    (void)argc;
+    (void)argv;
+    int i = 0;
+    int j = 0;
+    while (envp[i])
+    {
+        j = 0;
+        while (envp[i][j])
+        {
+            printf("%c",envp[i][j]);
+            j++;
+        }
+        printf("\n");
+        i++;
+    }
+    printf("\n");
     return (0);
 }

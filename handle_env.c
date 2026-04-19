@@ -1,8 +1,6 @@
-#include "minishell.h"
+ #include "minishell.h"
 
-
-
-void handle_env(char *path)
+/*void handle_env(char *path)
 {
     int fd;
     static char *buff;
@@ -23,4 +21,14 @@ void handle_env(char *path)
     }
     free(buff);
     close (fd);
-}      
+} */
+void handle_env(char **envp)
+{
+    int i = 0;
+    while (envp[i])
+    {
+        printf("%s",envp[i]);
+        i++;
+        printf("\n");
+    }
+}

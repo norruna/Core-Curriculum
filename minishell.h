@@ -15,8 +15,7 @@
 
 void cd_path(char *line);
 void execute_cd(char *path);
-void running_minishell(void);
 void	handle_sigint(int sig);
-void	run_command(char *line);
-void    handle_env(char *path);
+void	run_command(char *line, char **envp);
+void    handle_env(char **path);
 #endif
