@@ -4,10 +4,35 @@
 char	*ignore_spaces(char *line)
 {
 	int		i = 0;
-	
-	while (line[i] == 32)
-		i++;
-	return (&line[i]);
+	char	*result;
+	int		j = 0;
+	int		space = 0;
+	result = (char *)malloc(sizeof(char) * ft_strlen(line) + 1);
+	if (!result)
+		return (0);
+	while (line[i])
+	{
+		while (line [i] && line[i] == 32)
+			i++;
+		while( line [i] && line[i] != 32)
+		{
+			result[j] =line[i];
+			j++;
+			i++;
+		}
+		if (line[i + 1] && line[i] == 32)
+		{
+			result[j] = line[i];
+			space = 1;
+			j++;
+			i++;
+		}
+		while (line[i] && space == 1)
+			
+
+	}
+	result[j] = '\0';
+	return (result);
 }
 
 
@@ -39,8 +64,8 @@ void	run_command(char *line, char **envp)
 	int		status;
 	char	*path;
 	char	*args[2];
-	
-	line = ignore_spaces(line);
+	char	*new_line;
+	new_line = ignore_spaces(line);
 	if (strcmp(line,"exit") == 0)
 	{
 		free(line);
@@ -96,6 +121,7 @@ void	run_command(char *line, char **envp)
 		exit(1);
 	}
 	waitpid(pid, &status, 0);
+	free(new_line);
 }
 
 
