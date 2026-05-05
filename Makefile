@@ -3,17 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nellys-simulation <nellys-simulation@st    +#+  +:+       +#+         #
+#    By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/28 21:24:46 by nellys-simu       #+#    #+#              #
-#    Updated: 2026/04/18 21:12:23 by nellys-simu      ###   ########.fr        #
+#    Updated: 2026/05/05 14:36:31 by mayahiao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -lreadline -lncurses
+CFLAGS = -Wall -Wextra -Werror
+RDLNFLAGS = -lreadline -lncurses
 
 SRC_FILES = run_command main handle_cd handle_signal handle_env
 SRCS = $(addsuffix .c, $(SRC_FILES))
@@ -28,7 +29,7 @@ $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)  
+	$(CC) $(RDLNFLAGS) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)  
 
 clean:
 	rm -f $(OBJS)
