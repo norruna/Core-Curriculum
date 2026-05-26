@@ -18,4 +18,5 @@ void execute_cd(char *path);
 void	handle_sigint(int sig);
 void	run_command(char *line, char **envp);
 void    handle_env(char **path);
+void    handle_input(char **path);
 #endif

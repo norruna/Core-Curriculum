@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+         #
+#    By: nelly <nelly@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/28 21:24:46 by nellys-simu       #+#    #+#              #
-#    Updated: 2026/05/05 14:36:31 by mayahiao         ###   ########.fr        #
+#    Updated: 2026/05/26 13:29:08 by nelly            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RDLNFLAGS = -lreadline -lncurses
 
-SRC_FILES = run_command main handle_cd handle_signal handle_env
+SRC_FILES = run_command main handle_cd handle_signal handle_env handle_redirections
 SRCS = $(addsuffix .c, $(SRC_FILES))
 OBJS = $(SRCS:.c=.o)
 
@@ -29,7 +29,7 @@ $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJS)
-	$(CC) $(RDLNFLAGS) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)  
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT)  $(RDLNFLAGS) -o $(NAME)  
 
 clean:
 	rm -f $(OBJS)

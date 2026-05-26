@@ -1,7 +1,7 @@
 #include "minishell.h"
 
 /*ignore spaces to be more bash-like*/
-char	*ignore_spaces(char *line)
+/* char	*ignore_spaces(char *line)
 {
 	int		i = 0;
 	char	*result;
@@ -33,7 +33,7 @@ char	*ignore_spaces(char *line)
 	}
 	result[j] = '\0';
 	return (result);
-}
+} */
 
 
 /*running commands ls cat and pwd
@@ -64,16 +64,21 @@ void	run_command(char *line, char **envp)
 	int		status;
 	char	*path;
 	char	*args[2];
-	char	*new_line;
-	new_line = ignore_spaces(line);
+	/* char	*new_line; */
+	/* new_line = ignore_spaces(line); */
 	if (strcmp(line,"exit") == 0)
 	{
 		free(line);
 		exit(0);
 	}
+		if (ft_strchr(path, '>') == 1) //check for redirections first
+	{
+		handle_input(path);
+		return ;
+	}
 	if (line[0] == 'c' && line[1] == 'd' && line[2] == 32)
     {
-		line = ignore_spaces(line);
+	/* 	line = ignore_spaces(line); */
 		if (strcmp(line,"..") == 0 || strcmp(line, ".") == 0 || strcmp(line, "cd") == 0)
 		{	
 			execute_cd(line);
@@ -104,8 +109,7 @@ void	run_command(char *line, char **envp)
 	{
 		handle_env(envp);
 		return ;
-	}	
-	
+	}
 	args[0] = path;
 	args[1] = NULL;
 	pid = fork();
@@ -121,7 +125,7 @@ void	run_command(char *line, char **envp)
 		exit(1);
 	}
 	waitpid(pid, &status, 0);
-	free(new_line);
+	/* free(new_line); */
 }
 
 
