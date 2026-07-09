@@ -1,45 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_command.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/07 16:28:57 by mayahiao          #+#    #+#             */
+/*   Updated: 2026/07/08 15:03:39 by mayahiao         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
-
-/*ignore spaces to be more bash-like*/
-/* char	*ignore_spaces(char *line)
-{
-	int		i = 0;
-	char	*result;
-	int		j = 0;
-	int		space = 0;
-	result = (char *)malloc(sizeof(char) * ft_strlen(line) + 1);
-	if (!result)
-		return (0);
-	while (line[i])
-	{
-		while (line [i] && line[i] == 32)
-			i++;
-		while( line [i] && line[i] != 32)
-		{
-			result[j] =line[i];
-			j++;
-			i++;
-		}
-		if (line[i + 1] && line[i] == 32)
-		{
-			result[j] = line[i];
-			space = 1;
-			j++;
-			i++;
-		}
-		while (line[i] && space == 1)
-			
-
-	}
-	result[j] = '\0';
-	return (result);
-} */
-
-
-/*running commands ls cat and pwd
-dont forget to replace strcmp with ft_strcmp*/
-//beginning of block
-
 
 static char	*get_path(char *line)
 {
@@ -54,48 +25,76 @@ static char	*get_path(char *line)
 		return("/bin/env");
 	return (NULL);
 }
+void handle_env(char **envp)
+{
+    int i = 0;
+    while (envp[i])
+    {
+        printf("%s",envp[i]);
+        i++;
+        printf("\n");
+    }
+}
+void	handle_echo(t_tools *tools)
+{
+	t_list	*current;
+	t_token	*token;
 
+	current = tools->token_list;
+	if (!current)
+		return ;
+	current = current->next;
+	if (!current)
+		return ;
+	token = (t_token *)current->content;
+	if (strcmp(token->value, "-n") != 0)
+		return ;
+	current = current->next;
+	while (current)
+	{
+		token = (t_token *)current->content;
+		printf("%s", token->value);	
+		if (current->next)
+			printf(" ");	
+		current = current->next;
+	}
+}
 
-//end of block
+void	handle_cd(t_tools *tools)
+{
+	printf("we re handling cd here\n");
+	t_list *current;
+	t_token *token;
+	
+	current = tools->token_list;
+	if (!current)
+		return ;
+	current = current->next;
+	if (!current)
+		return ;
+	token = (t_token *)current->content;
+	chdir(token->value);
+}
 
-void	run_command(char *line, char **envp)
+void	run_command(char *line, char **envp, t_tools *tools)
 {
 	pid_t	pid;
 	int		status;
 	char	*path;
 	char	*args[2];
-	/* char	*new_line; */
-	/* new_line = ignore_spaces(line); */
-	if (strcmp(line,"exit") == 0)
-	{
-		free(line);
+	t_token	*token;
+	
+	token = (t_token *)tools->token_list->content;
+	if (strcmp(token->value,"exit") == 0)
 		exit(0);
-	}
-		if (ft_strchr(path, '>') == 1) //check for redirections first
-	{
-		handle_input(path);
+	if (ft_strncmp(token->value, "echo", 4) == 0)
+	{	
+		handle_echo(tools);
 		return ;
 	}
-	if (line[0] == 'c' && line[1] == 'd' && line[2] == 32)
-    {
-	/* 	line = ignore_spaces(line); */
-		if (strcmp(line,"..") == 0 || strcmp(line, ".") == 0 || strcmp(line, "cd") == 0)
-		{	
-			execute_cd(line);
-			return ;
-		}
-        cd_path(line);
-        return ;
-        }
-	
-	if (strncmp(line,"echo -n",7) == 0)
+	if (ft_strncmp(token->value, "cd", 2) == 0)
 	{
-		int i = 8;
-		while (line[i])
-		{
-			write(1,&line[i], 1);
-			i++;
-		}
+		handle_cd(tools);
 		return ;
 	}
 	path = get_path(line);
@@ -125,12 +124,4 @@ void	run_command(char *line, char **envp)
 		exit(1);
 	}
 	waitpid(pid, &status, 0);
-	/* free(new_line); */
 }
-
-
-
-
-
-
-
