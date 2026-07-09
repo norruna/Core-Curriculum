@@ -58,7 +58,7 @@ int	main(int argc, char **argv, char **env)
 		if (*line)
 			add_history(line);
 		tokenizer(line, &tools);
-		run_command(line, env, &tools);	
+		run_command(env, &tools);	
 		ft_lstclear(&tools.token_list, free_token);
 		free(line);
 	}

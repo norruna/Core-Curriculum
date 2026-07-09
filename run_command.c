@@ -76,7 +76,7 @@ void	handle_cd(t_tools *tools)
 	chdir(token->value);
 }
 
-void	run_command(char *line, char **envp, t_tools *tools)
+void	run_command(char **envp, t_tools *tools)
 {
 	pid_t	pid;
 	int		status;
@@ -97,10 +97,10 @@ void	run_command(char *line, char **envp, t_tools *tools)
 		handle_cd(tools);
 		return ;
 	}
-	path = get_path(line);
+	path = get_path(token->value);
 	if (!path)
 	{
-		printf("command not found: %s\n", line);
+		printf("command not found: %s\n", token->value);
 		return ;
 	}
 

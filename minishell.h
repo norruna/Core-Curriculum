@@ -84,5 +84,5 @@ int					error_tokenizer_exit(char *msg, t_tools *tools);
 
 //run_command
 
-void	run_command(char *line, char **envp, t_tools *tools);
+void	run_command(char **envp, t_tools *tools);
 #endif
