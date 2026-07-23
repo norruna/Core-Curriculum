@@ -1,113 +1,108 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_command.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/07 16:28:57 by mayahiao          #+#    #+#             */
+/*   Updated: 2026/07/23 05:17:53 by mayahiao         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-/*ignore spaces to be more bash-like*/
-/* char	*ignore_spaces(char *line)
-{
-	int		i = 0;
-	char	*result;
-	int		j = 0;
-	int		space = 0;
-	result = (char *)malloc(sizeof(char) * ft_strlen(line) + 1);
-	if (!result)
-		return (0);
-	while (line[i])
-	{
-		while (line [i] && line[i] == 32)
-			i++;
-		while( line [i] && line[i] != 32)
-		{
-			result[j] =line[i];
-			j++;
-			i++;
-		}
-		if (line[i + 1] && line[i] == 32)
-		{
-			result[j] = line[i];
-			space = 1;
-			j++;
-			i++;
-		}
-		while (line[i] && space == 1)
-			
-
-	}
-	result[j] = '\0';
-	return (result);
-} */
-
-
-/*running commands ls cat and pwd
-dont forget to replace strcmp with ft_strcmp*/
-//beginning of block
-
-
-static char	*get_path(char *line)
+static char	*get_path(t_token *token)
 {
         
-	if (strcmp(line, "ls") == 0)
+	if (strcmp(token->value, "ls") == 0)
 		return ("/bin/ls");
-	if (strcmp(line, "pwd") == 0)
-		return ("/bin/pwd");
-	if (strcmp(line, "cat") == 0)
-		return ("/bin/cat");
-	if (strcmp(line, "env") == 0)
-		return("/bin/env");
 	return (NULL);
 }
+static void check_exit(t_tools *tools)
+{
+	t_token	*token;
+	
+	token = (t_token *)tools->token_list->content;
+	if (strcmp(token->value,"exit") == 0)
+		exit(0);
+}
+ static int check_echo(t_tools *tools)
+{
+	t_token	*token;
 
+	token = (t_token *)tools->token_list->content;
+	
+	if (strcmp(token->value, "echo") != 0)
+		return(0) ;
+	handle_echo(tools);
+	return (1);
+}
+static int check_cd(t_tools *tools)
+{
+	t_token *token;
+	
+	token = (t_token *)tools->token_list->content;
+	if (strcmp(token->value, "cd") != 0)
+		return(0) ;
+	handle_cd(tools);
+	return (1);
+}
+static int check_env(t_tools *tools, char **envp)
+{
+	t_token *token;
+	
+	token = (t_token *)tools->token_list->content;
+	if (strcmp(token->value, "env") != 0)
+		return(0) ;
+	handle_env(envp);
+	return (1);
 
-//end of block
+}
+static int check_pwd(t_tools *tools)
+{
+	t_token *token;
+	
+	token = (t_token *)tools->token_list->content;
+	if (strcmp(token->value, "pwd") != 0)
+		return(0) ;
+	handle_pwd();
+	return (1);
+}
 
-void	run_command(char *line, char **envp)
+//to stop segfault hopefully
+static void	close_stdout(int save_stdout)
+{
+		dup2(save_stdout, STDOUT_FILENO);
+		close (save_stdout);
+}
+void	run_command(char **envp, t_tools *tools)
 {
 	pid_t	pid;
 	int		status;
 	char	*path;
 	char	*args[2];
-	/* char	*new_line; */
-	/* new_line = ignore_spaces(line); */
-	if (strcmp(line,"exit") == 0)
-	{
-		free(line);
-		exit(0);
-	}
-		if (ft_strchr(path, '>') == 1) //check for redirections first
-	{
-		handle_input(path);
-		return ;
-	}
-	if (line[0] == 'c' && line[1] == 'd' && line[2] == 32)
-    {
-	/* 	line = ignore_spaces(line); */
-		if (strcmp(line,"..") == 0 || strcmp(line, ".") == 0 || strcmp(line, "cd") == 0)
-		{	
-			execute_cd(line);
-			return ;
-		}
-        cd_path(line);
-        return ;
-        }
+	int		save_stdout;
+	t_token *token;
 	
-	if (strncmp(line,"echo -n",7) == 0)
+	save_stdout = dup(STDOUT_FILENO);
+	if (check_output_redirections(tools) == -1)
 	{
-		int i = 8;
-		while (line[i])
-		{
-			write(1,&line[i], 1);
-			i++;
-		}
+		close_stdout(save_stdout);
 		return ;
 	}
-	path = get_path(line);
+	check_exit(tools);
+	if (check_echo(tools) || check_pwd(tools) || check_env(tools,envp))
+	{
+		close_stdout(save_stdout);
+		return ;
+	}
+	check_cd(tools);
+	token = (t_token *)tools->token_list->content;
+	path = get_path(token);
 	if (!path)
 	{
-		printf("command not found: %s\n", line);
-		return ;
-	}
-
-	if (strcmp(path ,"/bin/env") == 0)
-	{
-		handle_env(envp);
+		close_stdout(save_stdout);
 		return ;
 	}
 	args[0] = path;
@@ -116,21 +111,15 @@ void	run_command(char *line, char **envp)
 	if (pid == -1)
 	{
 		perror("fork");
-		return;
+		return ;
 	}
 	if (pid == 0)
 	{
-		execve(path, args, NULL);
+		execve(path, args, envp);
 		perror("execve");
-		exit(1);
+		exit (1);
 	}
 	waitpid(pid, &status, 0);
-	/* free(new_line); */
+	close_stdout(save_stdout);
+
 }
-
-
-
-
-
-
-
