@@ -6,7 +6,11 @@
 #    By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/28 21:24:46 by nellys-simu       #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2026/07/21 16:59:36 by mayahiao         ###   ########.fr        #
+=======
+#    Updated: 2026/07/07 16:32:24 by mayahiao         ###   ########.fr        #
+>>>>>>> a1b6d03773e9202f60701ce895550bbf94b80b0f
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +20,11 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RDLNFLAGS = -lreadline -lncurses
 
+<<<<<<< HEAD
 SRC_FILES = minishell tokenizer cleanup run_command redirections handle_command
+=======
+SRC_FILES = minishell tokenizer cleanup run_command
+>>>>>>> a1b6d03773e9202f60701ce895550bbf94b80b0f
 SRCS = $(addsuffix .c, $(SRC_FILES))
 OBJS = $(SRCS:.c=.o)
 

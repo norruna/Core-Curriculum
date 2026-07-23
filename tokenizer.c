@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 19:33:34 by maleibig          #+#    #+#             */
 /*   Updated: 2026/07/23 02:41:55 by mayahiao         ###   ########.fr       */
+=======
+/*   By: maleibig <maleibig@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/14 19:33:34 by maleibig          #+#    #+#             */
+/*   Updated: 2026/07/01 22:04:49 by maleibig         ###   ########.fr       */
+>>>>>>> a1b6d03773e9202f60701ce895550bbf94b80b0f
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +52,11 @@ void	add_token(t_token_type type, char *line, int len, t_tools *tools)
 	if (token_node == NULL)
 		error_tokenizer_exit("error making list\n", tools);
 	ft_lstadd_back(&tools->token_list, token_node);
+<<<<<<< HEAD
 	//printf("type: %d, value: %s\n", new_token->type, new_token->value);
+=======
+	printf("type: %d, value: %s\n", new_token->type, new_token->value);
+>>>>>>> a1b6d03773e9202f60701ce895550bbf94b80b0f
 }
 
 void	handle_word(char *line, int *i, t_tools *tools)
