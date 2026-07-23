@@ -6,11 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 19:37:52 by maleibig          #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2026/07/23 05:10:57 by mayahiao         ###   ########.fr       */
-=======
-/*   Updated: 2026/07/08 14:05:33 by mayahiao         ###   ########.fr       */
->>>>>>> a1b6d03773e9202f60701ce895550bbf94b80b0f
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +85,6 @@ int					error_tokenizer_exit(char *msg, t_tools *tools);
 //run_command
 
 void	run_command(char **envp, t_tools *tools);
-<<<<<<< HEAD
 
 //handle_command
 void				handle_cd(t_tools *tools);
@@ -100,6 +95,4 @@ void				handle_pwd(void);
 
  int check_output_redirections(t_tools *tools);
  int output_redirection(char *file);
-=======
->>>>>>> a1b6d03773e9202f60701ce895550bbf94b80b0f
 #endif
