@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 19:37:52 by maleibig          #+#    #+#             */
-/*   Updated: 2026/07/23 05:10:57 by mayahiao         ###   ########.fr       */
+/*   Updated: 2026/07/23 15:49:10 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void				parser(t_tools *tools);
 
 ////***cleanup.c***////
 int					error_tokenizer_exit(char *msg, t_tools *tools);
-
-
+void				close_stdout(int save_stdout);
+void				close_stdin(int save_stdin);
 //run_command
 
 void	run_command(char **envp, t_tools *tools);
@@ -93,6 +93,9 @@ void				handle_env(char **envp);
 void				handle_pwd(void);
 //redirections
 
- int check_output_redirections(t_tools *tools);
- int output_redirection(char *file);
+int check_redirections(t_tools *tools);
+int output_redirection(char *file);
+int input_redirection(char *file);
+int append_redirection(char *file);
+void heredoc_redirection(char *delimiter);
 #endif
