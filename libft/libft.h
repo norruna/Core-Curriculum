@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 11:16:17 by mayahiao          #+#    #+#             */
-/*   Updated: 2025/05/19 12:18:29 by mayahiao         ###   ########.fr       */
+/*   Updated: 2026/07/24 22:35:01 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s1, unsigned int start, size_t len);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	**ft_split(const char *str, char c);
+void	ft_free(char **result);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *s);

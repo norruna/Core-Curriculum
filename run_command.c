@@ -6,19 +6,12 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:28:57 by mayahiao          #+#    #+#             */
-/*   Updated: 2026/07/23 17:08:31 by mayahiao         ###   ########.fr       */
+/*   Updated: 2026/07/24 22:53:49 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*get_path(t_token *token)
-{
-        
-	if (strcmp(token->value, "ls") == 0)
-		return ("/bin/ls");
-	return (NULL);
-}
 static void check_exit(t_tools *tools)
 {
 	t_token	*token;
@@ -98,15 +91,33 @@ static char *check_heredoc(t_tools *tools)
 			if(!delimiter)
 				return (0);
 			token = current->content;
-			//printf("current->content is %s\n",(char *)token->value);
 			strcpy(delimiter, token->value);
-			//printf("delimister is %s\n",delimiter);
 			return (delimiter);
 		}
 		current = current->next;
 	}
 	return (0);
 }
+static int	check_pipe(t_tools *tools)
+{
+	t_list *current;
+	t_token *token;
+	current = tools->token_list;
+	if (!current)
+		return (0);
+	while (current)
+	{
+		token = current->content;
+		if (token->type == TOKEN_PIPE)
+		{
+			/* handle_pipe(tools); */
+			return (1);
+		}
+		current = current->next;
+	}
+	return (0);
+}
+
 static void do_checks(t_tools *tools, int save_stdout, int save_stdin, char **envp)
 {
 	char	*delimiter;
@@ -124,7 +135,7 @@ static void do_checks(t_tools *tools, int save_stdout, int save_stdin, char **en
 		return ;
 	}
 	check_exit(tools);
-	if (check_echo(tools) || check_pwd(tools) || check_env(tools,envp))
+	if (check_echo(tools) || check_pwd(tools) || check_env(tools,envp) || check_pipe(tools))
 	{
 		close_stdout(save_stdout);
 		close_stdin(save_stdin);
@@ -134,10 +145,8 @@ static void do_checks(t_tools *tools, int save_stdout, int save_stdin, char **en
 }
 static void do_execve(char **envp, char *path)
 {
-	char	*args[2];
-	
+	char	*args[2];	
 	pid_t	pid;
-	
 	int		status;
 	
 	args[0] = path;
@@ -150,7 +159,7 @@ static void do_execve(char **envp, char *path)
 	}
 	if (pid == 0)
 	{
-		execve(path, args, envp);
+		execve(args[0], args, envp);
 		perror("execve");
 		exit (1);
 	}
@@ -161,15 +170,13 @@ void	run_command(char **envp, t_tools *tools)
 	
 	int		save_stdout;
 	int		save_stdin;
-	t_token *token;
 	char	*path;
 
 	save_stdout = dup(STDOUT_FILENO);
 	save_stdin = dup(STDIN_FILENO);
 	
 	do_checks(tools,save_stdout, save_stdin, envp);
-	token = (t_token *)tools->token_list->content;
-	path = get_path(token);
+	path = get_path(envp,tools);
 	if (!path)
 	{
 		close_stdout(save_stdout);
@@ -179,5 +186,4 @@ void	run_command(char **envp, t_tools *tools)
 	do_execve(envp, path);
 	close_stdout(save_stdout);
 	close_stdin(save_stdin);
-
 }

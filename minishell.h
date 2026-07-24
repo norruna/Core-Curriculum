@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 19:37:52 by maleibig          #+#    #+#             */
-/*   Updated: 2026/07/23 15:49:10 by mayahiao         ###   ########.fr       */
+/*   Updated: 2026/07/24 22:42:45 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void				handle_cd(t_tools *tools);
 void				handle_echo(t_tools *tools);
 void				handle_env(char **envp);
 void				handle_pwd(void);
+void				handle_pipe(t_tools *tools);
 //redirections
 
 int check_redirections(t_tools *tools);
@@ -98,4 +99,8 @@ int output_redirection(char *file);
 int input_redirection(char *file);
 int append_redirection(char *file);
 void heredoc_redirection(char *delimiter);
+
+//get path
+char *get_path(char **envp,t_tools *tools);
 #endif
+
