@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 16:59:39 by mayahiao          #+#    #+#             */
-/*   Updated: 2026/07/24 20:06:19 by mayahiao         ###   ########.fr       */
+/*   Updated: 2026/07/25 20:38:39 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,3 @@ void	handle_pwd(void)
 	free(str);
 }
 
-/* void	handle_pipe(t_tools *tools)
-{
-	
-} */

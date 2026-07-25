@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 16:28:57 by mayahiao          #+#    #+#             */
-/*   Updated: 2026/07/24 22:53:49 by mayahiao         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:45:42 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static char *check_heredoc(t_tools *tools)
 	}
 	return (0);
 }
-static int	check_pipe(t_tools *tools)
+/* static int	check_pipe(t_tools *tools)
 {
 	t_list *current;
 	t_token *token;
@@ -110,13 +110,13 @@ static int	check_pipe(t_tools *tools)
 		token = current->content;
 		if (token->type == TOKEN_PIPE)
 		{
-			/* handle_pipe(tools); */
+			handle_pipes(tools);
 			return (1);
 		}
 		current = current->next;
 	}
 	return (0);
-}
+} */
 
 static void do_checks(t_tools *tools, int save_stdout, int save_stdin, char **envp)
 {
@@ -135,7 +135,7 @@ static void do_checks(t_tools *tools, int save_stdout, int save_stdin, char **en
 		return ;
 	}
 	check_exit(tools);
-	if (check_echo(tools) || check_pwd(tools) || check_env(tools,envp) || check_pipe(tools))
+	if (check_echo(tools) || check_pwd(tools) || check_env(tools,envp) /* || check_pipe(tools) */)
 	{
 		close_stdout(save_stdout);
 		close_stdin(save_stdin);
@@ -143,14 +143,13 @@ static void do_checks(t_tools *tools, int save_stdout, int save_stdin, char **en
 	}
 	check_cd(tools);
 }
-static void do_execve(char **envp, char *path)
+static void do_execve(char **envp, t_tools *tools)
 {
-	char	*args[2];	
 	pid_t	pid;
 	int		status;
-	
-	args[0] = path;
-	args[1] = NULL;
+	char	**argv;
+
+	argv = make_argv(tools->token_list);
 	pid = fork();
 	if (pid == -1)
 	{
@@ -159,7 +158,7 @@ static void do_execve(char **envp, char *path)
 	}
 	if (pid == 0)
 	{
-		execve(args[0], args, envp);
+		execve(get_path(envp,tools), argv, envp);
 		perror("execve");
 		exit (1);
 	}
@@ -170,20 +169,12 @@ void	run_command(char **envp, t_tools *tools)
 	
 	int		save_stdout;
 	int		save_stdin;
-	char	*path;
 
 	save_stdout = dup(STDOUT_FILENO);
 	save_stdin = dup(STDIN_FILENO);
-	
 	do_checks(tools,save_stdout, save_stdin, envp);
-	path = get_path(envp,tools);
-	if (!path)
-	{
-		close_stdout(save_stdout);
-		close_stdin(save_stdin);
-		return ;
-	}
-	do_execve(envp, path);
+	do_execve(envp, tools);
 	close_stdout(save_stdout);
 	close_stdin(save_stdin);
+
 }

@@ -6,7 +6,7 @@
 /*   By: mayahiao <mayahiao@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 19:37:52 by maleibig          #+#    #+#             */
-/*   Updated: 2026/07/24 22:42:45 by mayahiao         ###   ########.fr       */
+/*   Updated: 2026/07/26 00:43:32 by mayahiao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void				handle_cd(t_tools *tools);
 void				handle_echo(t_tools *tools);
 void				handle_env(char **envp);
 void				handle_pwd(void);
-void				handle_pipe(t_tools *tools);
 //redirections
 
 int check_redirections(t_tools *tools);
@@ -102,5 +101,16 @@ void heredoc_redirection(char *delimiter);
 
 //get path
 char *get_path(char **envp,t_tools *tools);
+
+
+//find argv ai generated for testing purposes
+char	**make_argv(t_list *tokens);
+void	fill_argv(t_command *cmd, t_list *tokens);
+
+//commands
+void				handle_pipes(t_tools *tools);
+t_command			*init_commands(int	command_count, int redirect_count);
+void				free_commands(t_command *commands, int command_count, int redirect_count);
+t_list	*skip_command(t_list *current);
 #endif
 
